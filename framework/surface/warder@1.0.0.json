@@ -1,0 +1,1451 @@
+{
+ "cli": [],
+ "distribution": "warder",
+ "framework": "sillo",
+ "modules": {
+  "warder": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "Access": {
+     "kind": "class",
+     "members": [
+      "allows",
+      "by_permission",
+      "merged_under",
+      "none",
+      "open",
+      "readonly",
+      "rule"
+     ],
+     "signature": "(view=None, add=None, change=None, delete=None)"
+    },
+    "Action": {
+     "kind": "class",
+     "members": [
+      "allowed",
+      "builtin",
+      "collects",
+      "delete",
+      "destructive",
+      "export",
+      "key",
+      "link",
+      "needs_selection",
+      "option",
+      "prompt"
+     ],
+     "signature": "(label, run=None, *, name=None, icon=None, confirm=None, access=None, gate=None, style='default', selection='many', place='toolbar', fields=(), description=None, keyboard=None, options=None)"
+    },
+    "ActionFailed": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message, *, status=400)"
+    },
+    "Admin": {
+     "kind": "class",
+     "members": [
+      "add",
+      "at",
+      "bind",
+      "check",
+      "mount",
+      "navigation",
+      "permissions",
+      "render",
+      "resource_for",
+      "roles",
+      "slot"
+     ],
+     "signature": "(*, title='Admin', prefix='/admin', auth=None, theme=None, brand=None, logo=None, favicon=None, groups=(), footer=None, timezone=None, assets='full', sessions=True, secret=None, name='warder')"
+    },
+    "Audit": {
+     "kind": "class",
+     "members": [
+      "redacted"
+     ],
+     "signature": "(*, retain='1y', redact=\u2026, actions=\u2026, diff=True, address=True, request_id=True, reads=False)"
+    },
+    "Auth": {
+     "kind": "class",
+     "members": [
+      "grants_of",
+      "may_enter",
+      "resolve",
+      "role_map",
+      "user"
+     ],
+     "signature": "(*, users=None, backend=None, gate=None, permissions='records', session=None, login=None, mfa=None, impersonation=None, audit=None, roles=())"
+    },
+    "Card": {
+     "kind": "class",
+     "members": [
+      "chart",
+      "custom",
+      "key",
+      "number",
+      "option",
+      "table"
+     ],
+     "signature": "(kind, title, load=None, *, span=1, gate=None, icon=None, description=None, **options)"
+    },
+    "Column": {
+     "kind": "class",
+     "members": [
+      "alignment",
+      "avatar",
+      "badge",
+      "boolean",
+      "bytes",
+      "code",
+      "compute",
+      "computed",
+      "date",
+      "duration",
+      "heading",
+      "image",
+      "json",
+      "key",
+      "many",
+      "money",
+      "number",
+      "percent",
+      "progress",
+      "relation",
+      "relation_path",
+      "sort_field",
+      "sortable",
+      "tags",
+      "text",
+      "traversal",
+      "url"
+     ],
+     "signature": "(name=None, *, label=None, format=None, link=False, sort=None, align=None, width=None, access=None, help=None, derive=None, display=None, related=False, multiple=False, hidden=False, wrap=False, empty='\u2014', sticky=False, toggle=True)"
+    },
+    "Dashboard": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*cards, title='Overview', columns=4, description=None)"
+    },
+    "Declaration": {
+     "kind": "class",
+     "members": [
+      "where",
+      "with_"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "DeclarationError": {
+     "kind": "class",
+     "members": [
+      "render"
+     ],
+     "signature": "(message, *, hint=None, where=None, options=(), got=None)"
+    },
+    "Denied": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message='Forbidden', *, status=403)"
+    },
+    "Detail": {
+     "kind": "class",
+     "members": [
+      "main",
+      "panel_map",
+      "side"
+     ],
+     "signature": "(*panels, actions=(), title=None, subtitle=None, layout='split', description=None)"
+    },
+    "Empty": {
+     "kind": "class",
+     "members": [],
+     "signature": "(title='Nothing here yet', *, description=None, action=None, icon=None)"
+    },
+    "Field": {
+     "kind": "class",
+     "members": [
+      "code",
+      "color",
+      "date",
+      "datetime",
+      "duration",
+      "email",
+      "errors",
+      "file",
+      "has_default",
+      "heading",
+      "image",
+      "json",
+      "key",
+      "keyvalue",
+      "markdown",
+      "money",
+      "number",
+      "password",
+      "phone",
+      "radio",
+      "range",
+      "readonly",
+      "relation",
+      "rich",
+      "select",
+      "slug",
+      "switch",
+      "tags",
+      "text",
+      "textarea",
+      "time",
+      "url"
+     ],
+     "signature": "(name, *, label=None, widget=None, help=None, placeholder=None, required=None, editable=True, default=\u2026, access=None, hidden=False, span=1, show=None, validate=(), autofocus=False, unit=None)"
+    },
+    "Filter": {
+     "kind": "class",
+     "members": [
+      "apply",
+      "boolean",
+      "choice",
+      "custom",
+      "date_range",
+      "exists",
+      "fields",
+      "heading",
+      "key",
+      "narrow_with",
+      "number_range",
+      "option",
+      "parse",
+      "relation",
+      "search",
+      "text",
+      "toggle"
+     ],
+     "signature": "(kind='text', name=None, *, label=None, narrow=None, **options)"
+    },
+    "Form": {
+     "kind": "class",
+     "members": [
+      "errors",
+      "field_map",
+      "fields",
+      "writable"
+     ],
+     "signature": "(*parts, submit='Save', layout='stacked', sidebar=(), on_save=None, validate=(), deletable=True, cancel=True, description=None, width='normal')"
+    },
+    "Format": {
+     "kind": "class",
+     "members": [
+      "align",
+      "avatar",
+      "badge",
+      "boolean",
+      "bytes",
+      "code",
+      "color",
+      "date",
+      "duration",
+      "html",
+      "image",
+      "json",
+      "link",
+      "markdown",
+      "money",
+      "number",
+      "numeric",
+      "option",
+      "percent",
+      "progress",
+      "rating",
+      "relative",
+      "tags",
+      "text"
+     ],
+     "signature": "(kind='text', **options)"
+    },
+    "Gate": {
+     "kind": "class",
+     "members": [
+      "all",
+      "allows",
+      "always",
+      "any",
+      "custom",
+      "never",
+      "permission",
+      "role",
+      "staff",
+      "superuser"
+     ],
+     "signature": "(kind='always', value=None, gates=())"
+    },
+    "Impersonation": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*, gate=None, banner=True, maximum='1h', audit=True, readonly=False, reason=False)"
+    },
+    "List": {
+     "kind": "class",
+     "members": [
+      "action_map",
+      "column_map",
+      "filter_map",
+      "joins",
+      "link_column",
+      "prefetches",
+      "search",
+      "sorted_by"
+     ],
+     "signature": "(*columns, filters=(), actions=(), row_actions=(), sort=None, select_related=(), prefetch_related=(), per_page=25, per_page_options=\u2026, empty=None, selectable=True, sticky_header=True, density=None, totals=None, group_by=None, export=True, limit=None, description=None)"
+    },
+    "Login": {
+     "kind": "class",
+     "members": [
+      "attempts",
+      "window"
+     ],
+     "signature": "(*, throttle='5/15m', remember=True, providers=(), redirect='', message=None, field='email', lockout=None, password_reset=True)"
+    },
+    "MFA": {
+     "kind": "class",
+     "members": [
+      "demanded_of",
+      "totp",
+      "webauthn"
+     ],
+     "signature": "(method='totp', *, required=False, recovery_codes=10, issuer=None, step_up=(), grace=None, remember_device='30d')"
+    },
+    "NotConfigured": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "Outcome": {
+     "kind": "class",
+     "members": [
+      "option",
+      "tone"
+     ],
+     "signature": "(kind, message='', **options)"
+    },
+    "Page": {
+     "kind": "class",
+     "members": [
+      "key",
+      "route"
+     ],
+     "signature": "(path, title, render, *, icon=None, group=None, gate=None, component=None, name=None, weight=0, description=None, hidden=False)"
+    },
+    "Panel": {
+     "kind": "class",
+     "members": [
+      "custom",
+      "fields",
+      "inline",
+      "key",
+      "option",
+      "related",
+      "text"
+     ],
+     "signature": "(kind, title, target=None, *, access=None, icon=None, span='main', **options)"
+    },
+    "Resource": {
+     "kind": "class",
+     "members": [
+      "allows",
+      "default_access",
+      "key",
+      "permissions",
+      "route",
+      "rows",
+      "rules"
+     ],
+     "signature": "(model, *, label=None, plural=None, icon=None, group=None, slug=None, list=None, form=None, detail=None, access=None, scope=None, queryset=None, search=(), sort=None, stem=None, description=None, weight=0, creatable=True, editable=True, deletable=True, actions=(), hidden=False)"
+    },
+    "Role": {
+     "kind": "class",
+     "members": [
+      "crud",
+      "expand",
+      "unrestricted"
+     ],
+     "signature": "(name, *, grants=(), inherits=(), label=None, description=None)"
+    },
+    "Scope": {
+     "kind": "class",
+     "members": [
+      "all",
+      "apply",
+      "by",
+      "none",
+      "owner",
+      "query",
+      "tenant"
+     ],
+     "signature": "(kind='all', value=None)"
+    },
+    "Section": {
+     "kind": "class",
+     "members": [
+      "key"
+     ],
+     "signature": "(title, *fields, description=None, collapsed=False, columns=1, show=None, access=None, icon=None)"
+    },
+    "Session": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*, idle='30m', absolute='12h', concurrent=None, revoke_on_password_change=True, cookie='warder_session', secure=True, same_site='lax', visible=True)"
+    },
+    "Sort": {
+     "kind": "class",
+     "members": [
+      "as_terms",
+      "asc",
+      "by",
+      "desc",
+      "direction_of",
+      "none",
+      "reversed",
+      "then"
+     ],
+     "signature": "(*terms)"
+    },
+    "SortTerm": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "Theme": {
+     "kind": "class",
+     "members": [
+      "console",
+      "css_variables",
+      "grid",
+      "native",
+      "palette",
+      "paper",
+      "stylesheet"
+     ],
+     "signature": "(style='console', *, accent=None, radius=None, density='normal', font=None, mono=None, logo=None, favicon=None, dark=True, tokens=None, wide=False)"
+    },
+    "WarderError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "When": {
+     "kind": "class",
+     "members": [
+      "all",
+      "any",
+      "fields",
+      "holds"
+     ],
+     "signature": "(field=None, *, test='filled', value=None, conditions=(), equals=\u2026, not_equals=\u2026, any_of=None, none_of=None, is_true=False, is_false=False, empty=False)"
+    },
+    "Widget": {
+     "kind": "class",
+     "members": [
+      "checkbox",
+      "choices",
+      "code",
+      "color",
+      "date",
+      "datetime",
+      "duration",
+      "email",
+      "file",
+      "hidden",
+      "image",
+      "json",
+      "keyvalue",
+      "markdown",
+      "money",
+      "number",
+      "option",
+      "password",
+      "phone",
+      "radio",
+      "range",
+      "relation",
+      "rich",
+      "select",
+      "slug",
+      "switch",
+      "tags",
+      "text",
+      "textarea",
+      "time",
+      "url"
+     ],
+     "signature": "(kind='text', **options)"
+    },
+    "__version__": {
+     "kind": "value"
+    },
+    "crud": {
+     "kind": "function",
+     "signature": "(model, *fields, group=None, stem=None, **options)"
+    },
+    "current_user": {
+     "kind": "function",
+     "signature": "(ctx)"
+    },
+    "download": {
+     "kind": "function",
+     "signature": "(content=None, *, filename, content_type='application/octet-stream', url=None)"
+    },
+    "go": {
+     "kind": "function",
+     "signature": "(url, *, message='')"
+    },
+    "modal": {
+     "kind": "function",
+     "signature": "(component, *, props=None, title='')"
+    },
+    "nothing": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "notice": {
+     "kind": "function",
+     "signature": "(message, **options)"
+    },
+    "problem": {
+     "kind": "function",
+     "signature": "(message, **options)"
+    },
+    "refresh": {
+     "kind": "function",
+     "signature": "(*, message='')"
+    },
+    "warning": {
+     "kind": "function",
+     "signature": "(message, **options)"
+    }
+   }
+  },
+  "warder.access": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "ACTIONS": {
+     "kind": "value"
+    },
+    "Access": {
+     "kind": "class",
+     "members": [
+      "allows",
+      "by_permission",
+      "merged_under",
+      "none",
+      "open",
+      "readonly",
+      "rule"
+     ],
+     "signature": "(view=None, add=None, change=None, delete=None)"
+    },
+    "Gate": {
+     "kind": "class",
+     "members": [
+      "all",
+      "allows",
+      "always",
+      "any",
+      "custom",
+      "never",
+      "permission",
+      "role",
+      "staff",
+      "superuser"
+     ],
+     "signature": "(kind='always', value=None, gates=())"
+    },
+    "Role": {
+     "kind": "class",
+     "members": [
+      "crud",
+      "expand",
+      "unrestricted"
+     ],
+     "signature": "(name, *, grants=(), inherits=(), label=None, description=None)"
+    },
+    "Scope": {
+     "kind": "class",
+     "members": [
+      "all",
+      "apply",
+      "by",
+      "none",
+      "owner",
+      "query",
+      "tenant"
+     ],
+     "signature": "(kind='all', value=None)"
+    },
+    "current_user": {
+     "kind": "function",
+     "signature": "(ctx)"
+    }
+   }
+  },
+  "warder.actions": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Action": {
+     "kind": "class",
+     "members": [
+      "allowed",
+      "builtin",
+      "collects",
+      "delete",
+      "destructive",
+      "export",
+      "key",
+      "link",
+      "needs_selection",
+      "option",
+      "prompt"
+     ],
+     "signature": "(label, run=None, *, name=None, icon=None, confirm=None, access=None, gate=None, style='default', selection='many', place='toolbar', fields=(), description=None, keyboard=None, options=None)"
+    }
+   }
+  },
+  "warder.assets": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Assets": {
+     "kind": "class",
+     "members": [
+      "built",
+      "document",
+      "entry",
+      "tags"
+     ],
+     "signature": "(directory=None)"
+    },
+    "STATIC": {
+     "kind": "value"
+    }
+   }
+  },
+  "warder.auth": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Audit": {
+     "kind": "class",
+     "members": [
+      "redacted"
+     ],
+     "signature": "(*, retain='1y', redact=\u2026, actions=\u2026, diff=True, address=True, request_id=True, reads=False)"
+    },
+    "Auth": {
+     "kind": "class",
+     "members": [
+      "grants_of",
+      "may_enter",
+      "resolve",
+      "role_map",
+      "user"
+     ],
+     "signature": "(*, users=None, backend=None, gate=None, permissions='records', session=None, login=None, mfa=None, impersonation=None, audit=None, roles=())"
+    },
+    "Impersonation": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*, gate=None, banner=True, maximum='1h', audit=True, readonly=False, reason=False)"
+    },
+    "Login": {
+     "kind": "class",
+     "members": [
+      "attempts",
+      "window"
+     ],
+     "signature": "(*, throttle='5/15m', remember=True, providers=(), redirect='', message=None, field='email', lockout=None, password_reset=True)"
+    },
+    "MFA": {
+     "kind": "class",
+     "members": [
+      "demanded_of",
+      "totp",
+      "webauthn"
+     ],
+     "signature": "(method='totp', *, required=False, recovery_codes=10, issuer=None, step_up=(), grace=None, remember_device='30d')"
+    },
+    "Session": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*, idle='30m', absolute='12h', concurrent=None, revoke_on_password_change=True, cookie='warder_session', secure=True, same_site='lax', visible=True)"
+    }
+   }
+  },
+  "warder.backends": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Backend": {
+     "kind": "class",
+     "members": [
+      "current",
+      "login",
+      "logout"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "SessionAuth": {
+     "kind": "class",
+     "members": [
+      "current",
+      "login",
+      "logout",
+      "users",
+      "wait"
+     ],
+     "signature": "(users=None, *, policy=None)"
+    },
+    "Throttle": {
+     "kind": "class",
+     "members": [
+      "blocked",
+      "clear",
+      "record",
+      "retry_in"
+     ],
+     "signature": "(limit, window)"
+    }
+   }
+  },
+  "warder.base": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Declaration": {
+     "kind": "class",
+     "members": [
+      "where",
+      "with_"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "origin": {
+     "kind": "function",
+     "signature": "(skip=0)"
+    }
+   }
+  },
+  "warder.columns": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Column": {
+     "kind": "class",
+     "members": [
+      "alignment",
+      "avatar",
+      "badge",
+      "boolean",
+      "bytes",
+      "code",
+      "compute",
+      "computed",
+      "date",
+      "duration",
+      "heading",
+      "image",
+      "json",
+      "key",
+      "many",
+      "money",
+      "number",
+      "percent",
+      "progress",
+      "relation",
+      "relation_path",
+      "sort_field",
+      "sortable",
+      "tags",
+      "text",
+      "traversal",
+      "url"
+     ],
+     "signature": "(name=None, *, label=None, format=None, link=False, sort=None, align=None, width=None, access=None, help=None, derive=None, display=None, related=False, multiple=False, hidden=False, wrap=False, empty='\u2014', sticky=False, toggle=True)"
+    }
+   }
+  },
+  "warder.conditions": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "When": {
+     "kind": "class",
+     "members": [
+      "all",
+      "any",
+      "fields",
+      "holds"
+     ],
+     "signature": "(field=None, *, test='filled', value=None, conditions=(), equals=\u2026, not_equals=\u2026, any_of=None, none_of=None, is_true=False, is_false=False, empty=False)"
+    }
+   }
+  },
+  "warder.console": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "main": {
+     "kind": "function",
+     "signature": "(argv=None)"
+    }
+   }
+  },
+  "warder.errors": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "ActionFailed": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message, *, status=400)"
+    },
+    "DeclarationError": {
+     "kind": "class",
+     "members": [
+      "render"
+     ],
+     "signature": "(message, *, hint=None, where=None, options=(), got=None)"
+    },
+    "Denied": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message='Forbidden', *, status=403)"
+    },
+    "NotConfigured": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "WarderError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    }
+   }
+  },
+  "warder.fields": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Field": {
+     "kind": "class",
+     "members": [
+      "code",
+      "color",
+      "date",
+      "datetime",
+      "duration",
+      "email",
+      "errors",
+      "file",
+      "has_default",
+      "heading",
+      "image",
+      "json",
+      "key",
+      "keyvalue",
+      "markdown",
+      "money",
+      "number",
+      "password",
+      "phone",
+      "radio",
+      "range",
+      "readonly",
+      "relation",
+      "rich",
+      "select",
+      "slug",
+      "switch",
+      "tags",
+      "text",
+      "textarea",
+      "time",
+      "url"
+     ],
+     "signature": "(name, *, label=None, widget=None, help=None, placeholder=None, required=None, editable=True, default=\u2026, access=None, hidden=False, span=1, show=None, validate=(), autofocus=False, unit=None)"
+    }
+   }
+  },
+  "warder.filters": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Filter": {
+     "kind": "class",
+     "members": [
+      "apply",
+      "boolean",
+      "choice",
+      "custom",
+      "date_range",
+      "exists",
+      "fields",
+      "heading",
+      "key",
+      "narrow_with",
+      "number_range",
+      "option",
+      "parse",
+      "relation",
+      "search",
+      "text",
+      "toggle"
+     ],
+     "signature": "(kind='text', name=None, *, label=None, narrow=None, **options)"
+    },
+    "preset_range": {
+     "kind": "function",
+     "signature": "(preset, now=None)"
+    }
+   }
+  },
+  "warder.formats": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Format": {
+     "kind": "class",
+     "members": [
+      "align",
+      "avatar",
+      "badge",
+      "boolean",
+      "bytes",
+      "code",
+      "color",
+      "date",
+      "duration",
+      "html",
+      "image",
+      "json",
+      "link",
+      "markdown",
+      "money",
+      "number",
+      "numeric",
+      "option",
+      "percent",
+      "progress",
+      "rating",
+      "relative",
+      "tags",
+      "text"
+     ],
+     "signature": "(kind='text', **options)"
+    }
+   }
+  },
+  "warder.inertia": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Page": {
+     "kind": "class",
+     "members": [
+      "as_dict"
+     ],
+     "signature": "(component, props, url, version, deferred=None)"
+    },
+    "Prop": {
+     "kind": "class",
+     "members": [
+      "value"
+     ],
+     "signature": "(load, mode, group='default')"
+    },
+    "defer": {
+     "kind": "function",
+     "signature": "(load, *, group='default')"
+    },
+    "is_inertia": {
+     "kind": "function",
+     "signature": "(ctx)"
+    },
+    "location": {
+     "kind": "function",
+     "signature": "(url)"
+    },
+    "optional": {
+     "kind": "function",
+     "signature": "(load)"
+    },
+    "render": {
+     "kind": "async function",
+     "signature": "(ctx, component, props, *, version='', document=None)"
+    }
+   }
+  },
+  "warder.layout": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Empty": {
+     "kind": "class",
+     "members": [],
+     "signature": "(title='Nothing here yet', *, description=None, action=None, icon=None)"
+    },
+    "Panel": {
+     "kind": "class",
+     "members": [
+      "custom",
+      "fields",
+      "inline",
+      "key",
+      "option",
+      "related",
+      "text"
+     ],
+     "signature": "(kind, title, target=None, *, access=None, icon=None, span='main', **options)"
+    },
+    "Section": {
+     "kind": "class",
+     "members": [
+      "key"
+     ],
+     "signature": "(title, *fields, description=None, collapsed=False, columns=1, show=None, access=None, icon=None)"
+    }
+   }
+  },
+  "warder.models": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Activity": {
+     "kind": "class",
+     "members": [
+      "Meta",
+      "summary"
+     ],
+     "signature": "(**kwargs)"
+    },
+    "AdminUser": {
+     "kind": "class",
+     "members": [
+      "Meta"
+     ],
+     "signature": "(**kwargs)"
+    }
+   }
+  },
+  "warder.naming": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "label_for": {
+     "kind": "function",
+     "signature": "(model)"
+    },
+    "permission": {
+     "kind": "function",
+     "signature": "(stem, action)"
+    },
+    "plural_of": {
+     "kind": "function",
+     "signature": "(label)"
+    },
+    "slug": {
+     "kind": "function",
+     "signature": "(text)"
+    },
+    "slug_for": {
+     "kind": "function",
+     "signature": "(model)"
+    }
+   }
+  },
+  "warder.pages": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Card": {
+     "kind": "class",
+     "members": [
+      "chart",
+      "custom",
+      "key",
+      "number",
+      "option",
+      "table"
+     ],
+     "signature": "(kind, title, load=None, *, span=1, gate=None, icon=None, description=None, **options)"
+    },
+    "Dashboard": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*cards, title='Overview', columns=4, description=None)"
+    },
+    "Page": {
+     "kind": "class",
+     "members": [
+      "key",
+      "route"
+     ],
+     "signature": "(path, title, render, *, icon=None, group=None, gate=None, component=None, name=None, weight=0, description=None, hidden=False)"
+    }
+   }
+  },
+  "warder.props": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Query": {
+     "kind": "class",
+     "members": [
+      "as_props",
+      "offset"
+     ],
+     "signature": "(ctx, screen)"
+    },
+    "cell": {
+     "kind": "function",
+     "signature": "(row, column, *, schema=None, links=None)"
+    },
+    "detail_page": {
+     "kind": "async function",
+     "signature": "(admin, bound, ctx, row)"
+    },
+    "form_page": {
+     "kind": "async function",
+     "signature": "(admin, bound, ctx, *, row=None, values=None, errors=None)"
+    },
+    "jsonable": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "list_page": {
+     "kind": "async function",
+     "signature": "(admin, bound, ctx, rows, query, *, total)"
+    },
+    "shell": {
+     "kind": "async function",
+     "signature": "(admin, ctx)"
+    }
+   }
+  },
+  "warder.resolve": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Bound": {
+     "kind": "class",
+     "members": [
+      "model"
+     ],
+     "signature": "(resource, schema, list, form, detail)"
+    },
+    "bind": {
+     "kind": "function",
+     "signature": "(resource)"
+    },
+    "check": {
+     "kind": "function",
+     "signature": "(resource)"
+    },
+    "derive_detail": {
+     "kind": "function",
+     "signature": "(schema, form)"
+    },
+    "derive_form": {
+     "kind": "function",
+     "signature": "(schema)"
+    },
+    "derive_list": {
+     "kind": "function",
+     "signature": "(schema)"
+    },
+    "dress": {
+     "kind": "function",
+     "signature": "(form, schema)"
+    },
+    "dress_list": {
+     "kind": "function",
+     "signature": "(screen, schema)"
+    }
+   }
+  },
+  "warder.resource": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Resource": {
+     "kind": "class",
+     "members": [
+      "allows",
+      "default_access",
+      "key",
+      "permissions",
+      "route",
+      "rows",
+      "rules"
+     ],
+     "signature": "(model, *, label=None, plural=None, icon=None, group=None, slug=None, list=None, form=None, detail=None, access=None, scope=None, queryset=None, search=(), sort=None, stem=None, description=None, weight=0, creatable=True, editable=True, deletable=True, actions=(), hidden=False)"
+    }
+   }
+  },
+  "warder.results": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Outcome": {
+     "kind": "class",
+     "members": [
+      "option",
+      "tone"
+     ],
+     "signature": "(kind, message='', **options)"
+    },
+    "download": {
+     "kind": "function",
+     "signature": "(content=None, *, filename, content_type='application/octet-stream', url=None)"
+    },
+    "go": {
+     "kind": "function",
+     "signature": "(url, *, message='')"
+    },
+    "modal": {
+     "kind": "function",
+     "signature": "(component, *, props=None, title='')"
+    },
+    "nothing": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "notice": {
+     "kind": "function",
+     "signature": "(message, **options)"
+    },
+    "problem": {
+     "kind": "function",
+     "signature": "(message, **options)"
+    },
+    "refresh": {
+     "kind": "function",
+     "signature": "(*, message='')"
+    },
+    "warning": {
+     "kind": "function",
+     "signature": "(message, **options)"
+    }
+   }
+  },
+  "warder.routes": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "build": {
+     "kind": "function",
+     "signature": "(admin, app)"
+    },
+    "render_list": {
+     "kind": "async function",
+     "signature": "(admin, ctx, screen, rows, *, component='Embedded', title=None)"
+    },
+    "routes": {
+     "kind": "function",
+     "signature": "(admin, assets=None)"
+    }
+   }
+  },
+  "warder.schema": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "KINDS": {
+     "kind": "value"
+    },
+    "ModelField": {
+     "kind": "class",
+     "members": [
+      "editable",
+      "managed",
+      "relational",
+      "unresolved",
+      "writable_when_blank"
+     ],
+     "signature": "(name, kind, column=None, null=False, required=False, default=None, has_default=False, max_length=None, choices=(), related=None, related_name=None, generated=False, primary=False, unique=False, description=None, shadow=False)"
+    },
+    "Schema": {
+     "kind": "class",
+     "members": [
+      "editable",
+      "forget",
+      "get",
+      "has",
+      "names",
+      "of",
+      "relations",
+      "resolve",
+      "shadows"
+     ],
+     "signature": "(model)"
+    }
+   }
+  },
+  "warder.screens": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Detail": {
+     "kind": "class",
+     "members": [
+      "main",
+      "panel_map",
+      "side"
+     ],
+     "signature": "(*panels, actions=(), title=None, subtitle=None, layout='split', description=None)"
+    },
+    "Form": {
+     "kind": "class",
+     "members": [
+      "errors",
+      "field_map",
+      "fields",
+      "writable"
+     ],
+     "signature": "(*parts, submit='Save', layout='stacked', sidebar=(), on_save=None, validate=(), deletable=True, cancel=True, description=None, width='normal')"
+    },
+    "List": {
+     "kind": "class",
+     "members": [
+      "action_map",
+      "column_map",
+      "filter_map",
+      "joins",
+      "link_column",
+      "prefetches",
+      "search",
+      "sorted_by"
+     ],
+     "signature": "(*columns, filters=(), actions=(), row_actions=(), sort=None, select_related=(), prefetch_related=(), per_page=25, per_page_options=\u2026, empty=None, selectable=True, sticky_header=True, density=None, totals=None, group_by=None, export=True, limit=None, description=None)"
+    }
+   }
+  },
+  "warder.site": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Admin": {
+     "kind": "class",
+     "members": [
+      "add",
+      "at",
+      "bind",
+      "check",
+      "mount",
+      "navigation",
+      "permissions",
+      "render",
+      "resource_for",
+      "roles",
+      "slot"
+     ],
+     "signature": "(*, title='Admin', prefix='/admin', auth=None, theme=None, brand=None, logo=None, favicon=None, groups=(), footer=None, timezone=None, assets='full', sessions=True, secret=None, name='warder')"
+    }
+   }
+  },
+  "warder.sorting": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Sort": {
+     "kind": "class",
+     "members": [
+      "as_terms",
+      "asc",
+      "by",
+      "desc",
+      "direction_of",
+      "none",
+      "reversed",
+      "then"
+     ],
+     "signature": "(*terms)"
+    },
+    "SortTerm": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    }
+   }
+  },
+  "warder.theme": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "STYLES": {
+     "kind": "value"
+    },
+    "Theme": {
+     "kind": "class",
+     "members": [
+      "console",
+      "css_variables",
+      "grid",
+      "native",
+      "palette",
+      "paper",
+      "stylesheet"
+     ],
+     "signature": "(style='console', *, accent=None, radius=None, density='normal', font=None, mono=None, logo=None, favicon=None, dark=True, tokens=None, wide=False)"
+    }
+   }
+  },
+  "warder.widgets": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Widget": {
+     "kind": "class",
+     "members": [
+      "checkbox",
+      "choices",
+      "code",
+      "color",
+      "date",
+      "datetime",
+      "duration",
+      "email",
+      "file",
+      "hidden",
+      "image",
+      "json",
+      "keyvalue",
+      "markdown",
+      "money",
+      "number",
+      "option",
+      "password",
+      "phone",
+      "radio",
+      "range",
+      "relation",
+      "rich",
+      "select",
+      "slug",
+      "switch",
+      "tags",
+      "text",
+      "textarea",
+      "time",
+      "url"
+     ],
+     "signature": "(kind='text', **options)"
+    }
+   }
+  }
+ },
+ "python": "3.13.14",
+ "unimportable": {},
+ "version": "1.0.0"
+}

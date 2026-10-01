@@ -1,0 +1,171 @@
+# Sillo API history, as it matters to a coding agent.
+#
+# `supported` is the range the bundled skills are written against. Each change
+# below is rendered into the "Version notes" of the skills that list it, so an
+# agent working on a project pinned to an older release can see exactly which
+# guidance does not apply. Versions are the first sillo-framework release that
+# contained the change (from sillohq/core tags and CHANGELOG.md).
+#
+# kind: introduced | deprecated | removed | changed
+
+supported: ">=1.0.0 <2.0.0"
+
+legacy:
+  - range: ">=0.0.1a1 <1.0.0a1"
+    note: >-
+      Sillo 0.x predates the context rewrite: handlers take (request, response),
+      responses go through a Responder, and the admin and templating layers are
+      built in. The bundled skills describe 1.x and will mislead on 0.x — read
+      the installed source under site-packages/sillo and the project's own
+      code, and treat every example here as 1.x-only.
+  - range: ">=1.0.0a1 <1.0.0"
+    note: >-
+      A 1.0 pre-release. Most guidance applies; check the version notes for
+      Depend(get_context=...) and app.wrap_asgi, which changed before 1.0.0.
+
+changes:
+  - id: silloapp-renamed
+    api: sillo.silloApp
+    kind: removed
+    version: 0.0.2a2
+    summary: The application class is SilloApp; the lowercase name raises ImportError, with no shim.
+    replacement: sillo.SilloApp
+    skills: [sillo-application]
+
+  - id: context-rewrite
+    api: handler(request, response)
+    kind: changed
+    version: 1.0.0a1
+    summary: >-
+      Handlers take one context argument (HttpContext / WebSocketContext) and
+      return values or response builders. Request, the Response manager and the
+      Responder are gone, not shimmed.
+    replacement: "handler(ctx: HttpContext) returning json(...)/redirect(...)/a value"
+    skills: [sillo, sillo-requests, sillo-responses, sillo-middleware]
+
+  - id: debug-default-off
+    api: SilloApp(debug=...)
+    kind: changed
+    version: 1.0.0a1
+    summary: debug defaults to False; pass debug=True for local development pages.
+    skills: [sillo-application, sillo-errors, sillo-debugging]
+
+  - id: route-order-specificity
+    api: SilloApp(route_order=...)
+    kind: changed
+    version: 1.0.0a1
+    summary: Overlapping routes match most-specific-first instead of registration order; route_order="registration" restores the old behaviour.
+    skills: [sillo-routing]
+
+  - id: router-host-version-slash
+    api: Router(host=..., version=..., trailing_slash=...)
+    kind: introduced
+    version: 1.0.0a1
+    summary: Host- and version-scoped routers, trailing_slash policies, app.redirect(), priority= and print_routes().
+    skills: [sillo-routing]
+
+  - id: dependency-overrides
+    api: app.override / app.dependency_overrides
+    kind: introduced
+    version: 1.0.0a1
+    summary: Swap a Depend callable for a test double.
+    skills: [sillo-dependency-injection, sillo-testing]
+
+  - id: admin-moved-to-warder
+    api: sillo.admin
+    kind: removed
+    version: 1.0.0a1
+    summary: The built-in admin panel left the framework; it is the separate warder package.
+    replacement: warder
+    skills: [sillo-admin]
+
+  - id: templating-removed
+    api: sillo templating / render(..., ctx=ctx)
+    kind: removed
+    version: 1.0.0a1
+    summary: Server-side HTML templating is no longer part of the framework; Jinja2 remains only for mail templates.
+    replacement: sillo-inertia pages, or your own Jinja2 environment returning html(...)
+    skills: [sillo, sillo-responses, sillo-inertia]
+
+  - id: ws-route-path-params
+    api: app.ws_route path parameters
+    kind: changed
+    version: 1.0.0a1
+    summary: WebSocket handlers now receive path parameters as keyword arguments (they were silently empty before).
+    skills: [sillo-websockets]
+
+  - id: ws-dependency-injection
+    api: Depend on ws_route handlers
+    kind: introduced
+    version: 0.3.2.dev1
+    summary: WebSocket handlers resolve Depend(...) once per connection, including yield dependencies.
+    skills: [sillo-websockets]
+
+  - id: wrap-asgi-removed
+    api: SilloApp.wrap_asgi
+    kind: removed
+    version: 1.0.0a2
+    summary: Raw ASGI middleware goes through app.use(); the form is inferred from the signature or stated with raw=True.
+    replacement: app.use(middleware, raw=True, **kwargs)
+    skills: [sillo-middleware]
+
+  - id: depend-get-context-default
+    api: sillo.Depend(get_context=...)
+    kind: changed
+    version: 1.0.0rc1
+    summary: >-
+      get_context defaults to False. A dependency that reads the context must be
+      declared Depend(fn, get_context=True); without it, its first parameter no
+      longer receives ctx. Before rc1 every dependency received ctx first.
+    skills: [sillo-dependency-injection, sillo-auth]
+
+  - id: useauth-scopes-removed
+    api: useAuth(scopes=...)
+    kind: removed
+    version: 0.0.2a1
+    summary: The scopes= parameter is gone (some guides still describe it as deprecated).
+    replacement: useAuth(schemes=[...])
+    skills: [sillo-auth]
+
+  - id: auth-decorators-removed
+    api: "@auth / @has_permission"
+    kind: removed
+    version: 0.0.2a1
+    summary: Route protection is the auth= argument on a route, not a decorator.
+    replacement: "@app.get(..., auth=useAuth(permissions=[...]))"
+    skills: [sillo-auth, sillo-authorization]
+
+  - id: redis-queue-at-least-once
+    api: sillo.work.queue.RedisConnection
+    kind: changed
+    version: 0.0.2a1
+    summary: Redis delivery is at-least-once (visibility_timeout, ack); jobs must be idempotent. Needs Redis 6.2+.
+    skills: [sillo-queues]
+
+  - id: tortoise-native-migrations
+    api: sillo.record.MigrationHelper
+    kind: changed
+    version: 0.0.1a2
+    summary: Migrations run on Tortoise's native engine (tortoise-orm>=1.0), not aerich.
+    skills: [sillo-migrations]
+
+  - id: installables
+    api: app.install / sillo.installables.Installable
+    kind: introduced
+    version: 1.0.0
+    summary: Subsystems install as objects (Record, Mail, StorageInstallable, Work, Scheduler); setup_* helpers remain as wrappers.
+    skills: [sillo-application, sillo-record, sillo-mail, sillo-storage, sillo-queues, sillo-scheduler]
+
+  - id: env-autoload
+    api: sillo.env
+    kind: introduced
+    version: 0.2.0
+    summary: Sillo reads .env itself when SilloApp or a Config is constructed; python-dotenv is not needed.
+    skills: [sillo-application]
+
+  - id: storage-context-helpers
+    api: sillo.storage.bucket / sillo.mail.send_email
+    kind: introduced
+    version: 0.3.0
+    summary: Reach the configured storage and mail client from anywhere (handlers, jobs, scripts) without the app object.
+    skills: [sillo-storage, sillo-mail]

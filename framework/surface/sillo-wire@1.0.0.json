@@ -1,0 +1,328 @@
+{
+ "cli": [],
+ "distribution": "sillo-wire",
+ "framework": "sillo",
+ "modules": {
+  "sillo_wire": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "Backlog": {
+     "kind": "class",
+     "members": [
+      "append",
+      "clear",
+      "latest",
+      "since"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "DeliveryReport": {
+     "kind": "class",
+     "members": [
+      "attempted"
+     ],
+     "signature": "(delivered=0, dropped=0, failed=0)"
+    },
+    "Encoding": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwds)"
+    },
+    "Envelope": {
+     "kind": "class",
+     "members": [
+      "size"
+     ],
+     "signature": "(payload, room='', seq=\u2026, sent_at=\u2026)"
+    },
+    "Hub": {
+     "kind": "class",
+     "members": [
+      "broadcast",
+      "clear_history",
+      "close",
+      "count",
+      "disconnect",
+      "history",
+      "identities",
+      "join",
+      "leave",
+      "leave_all",
+      "members",
+      "on_join",
+      "on_leave",
+      "prune",
+      "replay",
+      "rooms",
+      "send_to"
+     ],
+     "signature": "(backlog=None)"
+    },
+    "MemoryBacklog": {
+     "kind": "class",
+     "members": [
+      "append",
+      "clear",
+      "latest",
+      "rooms",
+      "since",
+      "usage"
+     ],
+     "signature": "(capacity_bytes=1048576)"
+    },
+    "NullBacklog": {
+     "kind": "class",
+     "members": [
+      "append",
+      "clear",
+      "latest",
+      "since"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "Overflow": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwds)"
+    },
+    "Peer": {
+     "kind": "class",
+     "members": [
+      "close",
+      "closed",
+      "is_idle",
+      "offer",
+      "pending",
+      "send",
+      "start"
+     ],
+     "signature": "(socket, *, encoding=\u2026, identity=None, capacity=64, overflow=\u2026, idle_timeout=None)"
+    },
+    "PeerGone": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "RoomConsumer": {
+     "kind": "class",
+     "members": [
+      "as_handler",
+      "broadcast",
+      "identify",
+      "join",
+      "leave",
+      "on_connect",
+      "on_disconnect",
+      "on_message",
+      "reply",
+      "rooms"
+     ],
+     "signature": "(hub=None)"
+    },
+    "RoomNotFound": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "WireError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "__version__": {
+     "kind": "value"
+    }
+   }
+  },
+  "sillo_wire.backlog": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Backlog": {
+     "kind": "class",
+     "members": [
+      "append",
+      "clear",
+      "latest",
+      "since"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "MemoryBacklog": {
+     "kind": "class",
+     "members": [
+      "append",
+      "clear",
+      "latest",
+      "rooms",
+      "since",
+      "usage"
+     ],
+     "signature": "(capacity_bytes=1048576)"
+    },
+    "NullBacklog": {
+     "kind": "class",
+     "members": [
+      "append",
+      "clear",
+      "latest",
+      "since"
+     ],
+     "signature": "(*args, **kwargs)"
+    }
+   }
+  },
+  "sillo_wire.consumer": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "RoomConsumer": {
+     "kind": "class",
+     "members": [
+      "as_handler",
+      "broadcast",
+      "identify",
+      "join",
+      "leave",
+      "on_connect",
+      "on_disconnect",
+      "on_message",
+      "reply",
+      "rooms"
+     ],
+     "signature": "(hub=None)"
+    }
+   }
+  },
+  "sillo_wire.envelope": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "DeliveryReport": {
+     "kind": "class",
+     "members": [
+      "attempted"
+     ],
+     "signature": "(delivered=0, dropped=0, failed=0)"
+    },
+    "Encoding": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwds)"
+    },
+    "Envelope": {
+     "kind": "class",
+     "members": [
+      "size"
+     ],
+     "signature": "(payload, room='', seq=\u2026, sent_at=\u2026)"
+    }
+   }
+  },
+  "sillo_wire.errors": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "PeerGone": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "RoomNotFound": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "WireError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    }
+   }
+  },
+  "sillo_wire.hub": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Hub": {
+     "kind": "class",
+     "members": [
+      "broadcast",
+      "clear_history",
+      "close",
+      "count",
+      "disconnect",
+      "history",
+      "identities",
+      "join",
+      "leave",
+      "leave_all",
+      "members",
+      "on_join",
+      "on_leave",
+      "prune",
+      "replay",
+      "rooms",
+      "send_to"
+     ],
+     "signature": "(backlog=None)"
+    }
+   }
+  },
+  "sillo_wire.peer": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Peer": {
+     "kind": "class",
+     "members": [
+      "close",
+      "closed",
+      "is_idle",
+      "offer",
+      "pending",
+      "send",
+      "start"
+     ],
+     "signature": "(socket, *, encoding=\u2026, identity=None, capacity=64, overflow=\u2026, idle_timeout=None)"
+    }
+   }
+  },
+  "sillo_wire.policy": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Overflow": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwds)"
+    }
+   }
+  },
+  "sillo_wire.testing": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "FakeSocket": {
+     "kind": "class",
+     "members": [
+      "accept",
+      "close",
+      "send_bytes",
+      "send_json",
+      "send_text"
+     ],
+     "signature": "(*, delay=0.0, fail=False)"
+    },
+    "drain": {
+     "kind": "async function",
+     "signature": "(*peers, timeout=1.0)"
+    }
+   }
+  }
+ },
+ "python": "3.12.13",
+ "unimportable": {},
+ "version": "1.0.0"
+}

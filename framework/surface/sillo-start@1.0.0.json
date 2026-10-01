@@ -1,0 +1,465 @@
+{
+ "cli": [],
+ "distribution": "sillo-start",
+ "framework": "sillo",
+ "modules": {
+  "sillo_start": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "__version__": {
+     "kind": "value"
+    }
+   }
+  },
+  "sillo_start.cli": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "build_cli": {
+     "kind": "function",
+     "signature": "()"
+    }
+   }
+  },
+  "sillo_start.cli.app": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "handle_errors": {
+     "kind": "function",
+     "signature": "(func)"
+    },
+    "main": {
+     "kind": "function",
+     "signature": "(version=\u2026, verbose=\u2026, quiet=\u2026)"
+    },
+    "run": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "version_callback": {
+     "kind": "function",
+     "signature": "(value)"
+    }
+   }
+  },
+  "sillo_start.cli.create": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "create_app": {
+     "kind": "function",
+     "signature": "(template=\u2026, name=\u2026, directory=\u2026, ref=\u2026, install=\u2026, git=\u2026, force=\u2026)"
+    }
+   }
+  },
+  "sillo_start.exceptions": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "CommandError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message, *, command=None, returncode=None, output=None, hint=None)"
+    },
+    "SilloStartError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message, *, hint=None, exit_code=None)"
+    },
+    "ToolNotFoundError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message, *, hint=None, exit_code=None)"
+    },
+    "UsageError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message, *, hint=None, exit_code=None)"
+    }
+   }
+  },
+  "sillo_start.project": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "DEFAULT_TEMPLATE": {
+     "kind": "value"
+    },
+    "Template": {
+     "kind": "class",
+     "members": [
+      "parse",
+      "slug",
+      "url"
+     ],
+     "signature": "(owner, repo, ref='main')"
+    },
+    "fetch": {
+     "kind": "function",
+     "signature": "(template, destination)"
+    },
+    "personalise": {
+     "kind": "function",
+     "signature": "(root, name, *, template_name='starter')"
+    }
+   }
+  },
+  "sillo_start.project.template": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "Template": {
+     "kind": "class",
+     "members": [
+      "parse",
+      "slug",
+      "url"
+     ],
+     "signature": "(owner, repo, ref='main')"
+    },
+    "fetch": {
+     "kind": "function",
+     "signature": "(template, destination)"
+    },
+    "generate_secret_key": {
+     "kind": "function",
+     "signature": "(length=50)"
+    },
+    "personalise": {
+     "kind": "function",
+     "signature": "(root, name, *, template_name='starter')"
+    }
+   }
+  },
+  "sillo_start.utils": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "CommandResult": {
+     "kind": "class",
+     "members": [
+      "ok",
+      "output"
+     ],
+     "signature": "(command, returncode, stdout, stderr)"
+    },
+    "Console": {
+     "kind": "class",
+     "members": [
+      "blank",
+      "bullets",
+      "code",
+      "commands",
+      "configure",
+      "debug",
+      "diff",
+      "error",
+      "failure",
+      "header",
+      "hint",
+      "info",
+      "panel",
+      "print",
+      "progress",
+      "raw",
+      "rich",
+      "step",
+      "success",
+      "table",
+      "warning"
+     ],
+     "signature": "(*, quiet=False, verbose=False)"
+    },
+    "console": {
+     "kind": "value"
+    },
+    "detect_python_manager": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "is_ci": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "is_valid_project_name": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "is_valid_python_identifier": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "package_name_for": {
+     "kind": "function",
+     "signature": "(project_name)"
+    },
+    "require_tool": {
+     "kind": "function",
+     "signature": "(tool, *, hint=None)"
+    },
+    "run": {
+     "kind": "function",
+     "signature": "(command, *, cwd=None, env=None, timeout=600, check=True, capture=True, input_text=None)"
+    },
+    "tool_exists": {
+     "kind": "function",
+     "signature": "(tool)"
+    },
+    "which": {
+     "kind": "function",
+     "signature": "(tool)"
+    }
+   }
+  },
+  "sillo_start.utils.console": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "Console": {
+     "kind": "class",
+     "members": [
+      "blank",
+      "bullets",
+      "code",
+      "commands",
+      "configure",
+      "debug",
+      "diff",
+      "error",
+      "failure",
+      "header",
+      "hint",
+      "info",
+      "panel",
+      "print",
+      "progress",
+      "raw",
+      "rich",
+      "step",
+      "success",
+      "table",
+      "warning"
+     ],
+     "signature": "(*, quiet=False, verbose=False)"
+    },
+    "console": {
+     "kind": "value"
+    },
+    "is_ci": {
+     "kind": "function",
+     "signature": "()"
+    }
+   }
+  },
+  "sillo_start.utils.naming": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "distribution_name_for": {
+     "kind": "function",
+     "signature": "(project_name)"
+    },
+    "ensure_suffix": {
+     "kind": "function",
+     "signature": "(value, suffix)"
+    },
+    "is_valid_project_name": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "is_valid_python_identifier": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "package_name_for": {
+     "kind": "function",
+     "signature": "(project_name)"
+    },
+    "pluralize": {
+     "kind": "function",
+     "signature": "(word)"
+    },
+    "split_words": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "table_name": {
+     "kind": "function",
+     "signature": "(model_name)"
+    },
+    "to_camel": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "to_human": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "to_kebab": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "to_pascal": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "to_snake": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "to_title": {
+     "kind": "function",
+     "signature": "(value)"
+    }
+   }
+  },
+  "sillo_start.utils.pkgmanagers": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "BunManager": {
+     "kind": "class",
+     "members": [
+      "add_command",
+      "install_command",
+      "remove_command",
+      "run_command"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "FrontendPackageManager": {
+     "kind": "class",
+     "members": [
+      "add",
+      "add_command",
+      "available",
+      "install",
+      "install_command",
+      "remove_command",
+      "run_command"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "NpmManager": {
+     "kind": "class",
+     "members": [
+      "add_command",
+      "install_command",
+      "remove_command",
+      "run_command"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "PipManager": {
+     "kind": "class",
+     "members": [
+      "add_command",
+      "remove_command",
+      "run_prefix",
+      "sync_command"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "PnpmManager": {
+     "kind": "class",
+     "members": [
+      "add_command",
+      "install_command",
+      "remove_command",
+      "run_command"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "PythonPackageManager": {
+     "kind": "class",
+     "members": [
+      "add",
+      "add_command",
+      "available",
+      "remove",
+      "remove_command",
+      "run_prefix",
+      "sync",
+      "sync_command"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "UvManager": {
+     "kind": "class",
+     "members": [
+      "add_command",
+      "remove_command",
+      "run_prefix",
+      "sync_command"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "YarnManager": {
+     "kind": "class",
+     "members": [
+      "add_command",
+      "install_command",
+      "remove_command",
+      "run_command"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "detect_frontend_manager": {
+     "kind": "function",
+     "signature": "(project_dir=None)"
+    },
+    "detect_python_manager": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "frontend_manager": {
+     "kind": "function",
+     "signature": "(name)"
+    },
+    "python_manager": {
+     "kind": "function",
+     "signature": "(name)"
+    }
+   }
+  },
+  "sillo_start.utils.subprocess": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "CommandResult": {
+     "kind": "class",
+     "members": [
+      "ok",
+      "output"
+     ],
+     "signature": "(command, returncode, stdout, stderr)"
+    },
+    "require_tool": {
+     "kind": "function",
+     "signature": "(tool, *, hint=None)"
+    },
+    "run": {
+     "kind": "function",
+     "signature": "(command, *, cwd=None, env=None, timeout=600, check=True, capture=True, input_text=None)"
+    },
+    "stream": {
+     "kind": "function",
+     "signature": "(command, *, cwd=None, env=None, timeout=600)"
+    },
+    "tool_exists": {
+     "kind": "function",
+     "signature": "(tool)"
+    },
+    "which": {
+     "kind": "function",
+     "signature": "(tool)"
+    }
+   }
+  }
+ },
+ "python": "3.12.13",
+ "unimportable": {},
+ "version": "1.0.0"
+}

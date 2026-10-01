@@ -1,0 +1,87 @@
+{
+  "name": "@sillo/agent",
+  "version": "0.1.0",
+  "description": "Teach Claude Code, OpenCode and Codex the Sillo Python framework. Installs version-aware Sillo skills into the coding agent you already use.",
+  "keywords": [
+    "sillo",
+    "claude-code",
+    "opencode",
+    "codex",
+    "agent-skills",
+    "skills",
+    "ai",
+    "python",
+    "framework"
+  ],
+  "homepage": "https://github.com/sillohq/agent#readme",
+  "bugs": {
+    "url": "https://github.com/sillohq/agent/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sillohq/agent.git"
+  },
+  "license": "BSD-3-Clause",
+  "author": "Chidebele Dunamis",
+  "type": "module",
+  "bin": {
+    "sillo-agent": "dist/cli/main.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "skills",
+    "framework/capabilities.yml",
+    "framework/versions.yml",
+    "framework/tools/extract_surface.py",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "npm run -s build && node dist/cli/main.js dev validate",
+    "validate:skills": "npm run -s build && node dist/cli/main.js dev validate --skills-only",
+    "coverage:gaps": "npm run -s build && node dist/cli/main.js dev gaps --surface framework/surface",
+    "eval:routing": "npm run -s build && node dist/cli/main.js dev eval",
+    "skill:new": "npm run -s build && node dist/cli/main.js dev new-skill",
+    "surface": "python3 framework/tools/extract_surface.py",
+    "probes": "python3 -m pytest framework/probes -q",
+    "prepack": "npm run build",
+    "prepare": "npm run build",
+    "check": "npm run typecheck && npm run lint && npm run validate && npm test",
+    "render": "npm run -s build && node dist/cli/main.js dev render --out .render"
+  },
+  "dependencies": {
+    "smol-toml": "^1.9.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
+    "@types/node": "^26.6.3",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

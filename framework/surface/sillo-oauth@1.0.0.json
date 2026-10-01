@@ -1,0 +1,353 @@
+{
+ "cli": [],
+ "distribution": "sillo-oauth",
+ "framework": "sillo",
+ "modules": {
+  "sillo_oauth": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "AuthorizeURL": {
+     "kind": "class",
+     "members": [
+      "cookie_kwargs"
+     ],
+     "signature": "(url, state, cookie_name, cookie_value, max_age)"
+    },
+    "DiscordOAuthProvider": {
+     "kind": "class",
+     "members": [
+      "map_profile"
+     ],
+     "signature": "(*, client_id, client_secret='', state_secret=None, redirect_uri=None, scopes=None, name=None, authorize_endpoint=None, token_endpoint=None, userinfo_endpoint=None, use_pkce=None, authorize_params=None, token_headers=None, userinfo_headers=None, profile_mapper=None, transport=None, timeout=10.0)"
+    },
+    "GithubOAuthProvider": {
+     "kind": "class",
+     "members": [
+      "fetch_profile",
+      "map_profile"
+     ],
+     "signature": "(*, emails_endpoint=None, **kwargs)"
+    },
+    "GoogleOAuthProvider": {
+     "kind": "class",
+     "members": [
+      "map_profile"
+     ],
+     "signature": "(*, client_id, client_secret='', state_secret=None, redirect_uri=None, scopes=None, name=None, authorize_endpoint=None, token_endpoint=None, userinfo_endpoint=None, use_pkce=None, authorize_params=None, token_headers=None, userinfo_headers=None, profile_mapper=None, transport=None, timeout=10.0)"
+    },
+    "MicrosoftOAuthProvider": {
+     "kind": "class",
+     "members": [
+      "map_profile"
+     ],
+     "signature": "(*, tenant='common', **kwargs)"
+    },
+    "OAuthDenied": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "OAuthError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "OAuthProfile": {
+     "kind": "class",
+     "members": [
+      "key"
+     ],
+     "signature": "(provider, subject, email=None, email_verified=False, name=None, username=None, avatar_url=None, raw=\u2026, tokens=None, return_to=None)"
+    },
+    "OAuthProvider": {
+     "kind": "class",
+     "members": [
+      "build_profile",
+      "fetch_profile",
+      "fetch_userinfo",
+      "http_client",
+      "map_profile",
+      "refresh_request_data",
+      "token_request_data"
+     ],
+     "signature": "(*, client_id, client_secret='', state_secret=None, redirect_uri=None, scopes=None, name=None, authorize_endpoint=None, token_endpoint=None, userinfo_endpoint=None, use_pkce=None, authorize_params=None, token_headers=None, userinfo_headers=None, profile_mapper=None, transport=None, timeout=10.0)"
+    },
+    "OAuthTokens": {
+     "kind": "class",
+     "members": [
+      "authorization_header"
+     ],
+     "signature": "(access_token, token_type='Bearer', refresh_token=None, expires_in=None, scope=None, id_token=None, raw=\u2026)"
+    },
+    "ProfileFetchFailed": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "ProviderMisconfigured": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "ProviderRejected": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "StateExpired": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "StateMismatch": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "StatePayload": {
+     "kind": "class",
+     "members": [],
+     "signature": "(state, provider, expires_at, return_to=None)"
+    },
+    "TokenExchangeFailed": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "__version__": {
+     "kind": "value"
+    },
+    "authorize_url": {
+     "kind": "function",
+     "signature": "(provider, *, redirect_uri=None, scopes=None, return_to=None, extra_params=None, ttl=600, secret=None, cookie_name=None)"
+    },
+    "complete": {
+     "kind": "async function",
+     "signature": "(provider, *, code, state, cookie_value, error=None, error_description=None, secret=None, redirect_uri=None)"
+    },
+    "derive_verifier": {
+     "kind": "function",
+     "signature": "(state, secret)"
+    },
+    "exchange": {
+     "kind": "async function",
+     "signature": "(provider, request, *, secret=None, cookie_name=None, state_value=None, redirect_uri=None)"
+    },
+    "exchange_code": {
+     "kind": "async function",
+     "signature": "(provider, *, code, redirect_uri=None, verifier=None)"
+    },
+    "fetch_profile": {
+     "kind": "async function",
+     "signature": "(provider, tokens)"
+    },
+    "issue_state": {
+     "kind": "function",
+     "signature": "(provider, secret, *, ttl=600, return_to=None, now=None)"
+    },
+    "pkce_challenge": {
+     "kind": "function",
+     "signature": "(verifier)"
+    },
+    "refresh_tokens": {
+     "kind": "async function",
+     "signature": "(provider, *, refresh_token, scopes=None)"
+    },
+    "state_cookie_name": {
+     "kind": "function",
+     "signature": "(provider)"
+    },
+    "verify_state": {
+     "kind": "function",
+     "signature": "(cookie_value, state_param, provider, secret, *, now=None)"
+    }
+   }
+  },
+  "sillo_oauth.errors": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "OAuthDenied": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "OAuthError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "ProfileFetchFailed": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "ProviderMisconfigured": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "ProviderRejected": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "StateExpired": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "StateMismatch": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    },
+    "TokenExchangeFailed": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message=None, *, provider=None, detail=None)"
+    }
+   }
+  },
+  "sillo_oauth.flow": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "authorize_url": {
+     "kind": "function",
+     "signature": "(provider, *, redirect_uri=None, scopes=None, return_to=None, extra_params=None, ttl=600, secret=None, cookie_name=None)"
+    },
+    "complete": {
+     "kind": "async function",
+     "signature": "(provider, *, code, state, cookie_value, error=None, error_description=None, secret=None, redirect_uri=None)"
+    },
+    "exchange": {
+     "kind": "async function",
+     "signature": "(provider, request, *, secret=None, cookie_name=None, state_value=None, redirect_uri=None)"
+    },
+    "exchange_code": {
+     "kind": "async function",
+     "signature": "(provider, *, code, redirect_uri=None, verifier=None)"
+    },
+    "fetch_profile": {
+     "kind": "async function",
+     "signature": "(provider, tokens)"
+    },
+    "refresh_tokens": {
+     "kind": "async function",
+     "signature": "(provider, *, refresh_token, scopes=None)"
+    },
+    "state_cookie_name": {
+     "kind": "function",
+     "signature": "(provider)"
+    }
+   }
+  },
+  "sillo_oauth.models": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "AuthorizeURL": {
+     "kind": "class",
+     "members": [
+      "cookie_kwargs"
+     ],
+     "signature": "(url, state, cookie_name, cookie_value, max_age)"
+    },
+    "OAuthProfile": {
+     "kind": "class",
+     "members": [
+      "key"
+     ],
+     "signature": "(provider, subject, email=None, email_verified=False, name=None, username=None, avatar_url=None, raw=\u2026, tokens=None, return_to=None)"
+    },
+    "OAuthTokens": {
+     "kind": "class",
+     "members": [
+      "authorization_header"
+     ],
+     "signature": "(access_token, token_type='Bearer', refresh_token=None, expires_in=None, scope=None, id_token=None, raw=\u2026)"
+    }
+   }
+  },
+  "sillo_oauth.providers": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "DiscordOAuthProvider": {
+     "kind": "class",
+     "members": [
+      "map_profile"
+     ],
+     "signature": "(*, client_id, client_secret='', state_secret=None, redirect_uri=None, scopes=None, name=None, authorize_endpoint=None, token_endpoint=None, userinfo_endpoint=None, use_pkce=None, authorize_params=None, token_headers=None, userinfo_headers=None, profile_mapper=None, transport=None, timeout=10.0)"
+    },
+    "GithubOAuthProvider": {
+     "kind": "class",
+     "members": [
+      "fetch_profile",
+      "map_profile"
+     ],
+     "signature": "(*, emails_endpoint=None, **kwargs)"
+    },
+    "GoogleOAuthProvider": {
+     "kind": "class",
+     "members": [
+      "map_profile"
+     ],
+     "signature": "(*, client_id, client_secret='', state_secret=None, redirect_uri=None, scopes=None, name=None, authorize_endpoint=None, token_endpoint=None, userinfo_endpoint=None, use_pkce=None, authorize_params=None, token_headers=None, userinfo_headers=None, profile_mapper=None, transport=None, timeout=10.0)"
+    },
+    "MicrosoftOAuthProvider": {
+     "kind": "class",
+     "members": [
+      "map_profile"
+     ],
+     "signature": "(*, tenant='common', **kwargs)"
+    },
+    "OAuthProvider": {
+     "kind": "class",
+     "members": [
+      "build_profile",
+      "fetch_profile",
+      "fetch_userinfo",
+      "http_client",
+      "map_profile",
+      "refresh_request_data",
+      "token_request_data"
+     ],
+     "signature": "(*, client_id, client_secret='', state_secret=None, redirect_uri=None, scopes=None, name=None, authorize_endpoint=None, token_endpoint=None, userinfo_endpoint=None, use_pkce=None, authorize_params=None, token_headers=None, userinfo_headers=None, profile_mapper=None, transport=None, timeout=10.0)"
+    }
+   }
+  },
+  "sillo_oauth.state": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "StatePayload": {
+     "kind": "class",
+     "members": [],
+     "signature": "(state, provider, expires_at, return_to=None)"
+    },
+    "derive_verifier": {
+     "kind": "function",
+     "signature": "(state, secret)"
+    },
+    "issue_state": {
+     "kind": "function",
+     "signature": "(provider, secret, *, ttl=600, return_to=None, now=None)"
+    },
+    "pkce_challenge": {
+     "kind": "function",
+     "signature": "(verifier)"
+    },
+    "verify_state": {
+     "kind": "function",
+     "signature": "(cookie_value, state_param, provider, secret, *, now=None)"
+    }
+   }
+  }
+ },
+ "python": "3.14.6",
+ "unimportable": {},
+ "version": "1.0.0"
+}

@@ -1,0 +1,460 @@
+# Sillo capability inventory.
+#
+# The maintained map of Sillo's public surface, and the denominator of
+# `sillo-agent skills coverage`. It is checked from both sides in CI:
+#
+#   - `npm run coverage:gaps` diffs it against the surface snapshots in
+#     framework/surface/: a public module that no capability (or `internal`
+#     entry) owns fails the build, so a new Sillo subsystem cannot ship
+#     without the agent noticing.
+#   - `npm run validate` requires every `present` + `required` capability to
+#     be claimed by at least one stable skill (via the skill's `capabilities:`
+#     frontmatter), and every `absent` capability to be claimed by the base
+#     `sillo` skill, which tells agents not to invent it.
+#
+# status:
+#   present   Sillo has it. A skill must teach it.
+#   absent    Sillo deliberately does not have it; agents keep inventing it.
+#             `guidance` says what to do instead.
+#   internal  Public by name only; no guidance owed.
+#
+# modules: Python module prefixes this capability owns. `x.y` owns x.y and
+# everything below it; `x.y$` owns exactly x.y (for re-export hubs).
+
+schema: 1
+framework: sillo
+tracks: ">=1.0.0 <2.0.0"
+
+capabilities:
+  # ── Application ──────────────────────────────────────────────────────────
+  - id: application
+    title: Application & lifecycle
+    area: Application
+    modules: [sillo$, sillo.application, sillo.types, sillo.core$]
+    docs: [v1.0/guides/startups-and-shutdowns.mdx, v1.0/advanced/application-lifecycle.md]
+
+  - id: configuration
+    title: Typed configuration
+    area: Application
+    modules: [sillo.config]
+    docs: [v1.0/guides/configuration.md]
+
+  - id: environment
+    title: Environment & .env loading
+    area: Application
+    modules: [sillo.env]
+    docs: [v1.0/guides/environment.md]
+
+  - id: installables
+    title: Installables (app.install)
+    area: Application
+    modules: [sillo.installables]
+    docs: [v1.0/advanced/installables.mdx]
+
+  - id: deployment
+    title: Running & deploying
+    area: Application
+    modules: [sillo.dev]
+    docs: [v1.0/guides/start/deployment.md, v1.0/cli/framework-commands.md]
+
+  # ── HTTP ─────────────────────────────────────────────────────────────────
+  - id: routing
+    title: Routing, routers & groups
+    area: HTTP
+    modules: [sillo.core.routing, sillo.core.converters, sillo.route_builder]
+    docs: [v1.0/guides/routing.mdx, v1.0/guides/routers-and-subapps.md]
+
+  - id: context
+    title: HttpContext & request data
+    area: HTTP
+    modules: [sillo.core.http, sillo.objects, sillo.formparser]
+    docs: [v1.0/guides/request-info.md, v1.0/guides/handlers.md]
+
+  - id: responses
+    title: Responses, streaming & SSE
+    area: HTTP
+    modules: [sillo.responses, sillo.core.http.response, sillo.http.status, sillo.http.sse, sillo.encoding, sillo.core.encoding, sillo.middleware.response_headers, sillo.http$]
+    docs: [v1.0/guides/sending-responses.mdx, v1.0/guides/streaming-response.mdx, v1.0/guides/serialization.md]
+
+  - id: cookies_headers
+    title: Cookies & headers
+    area: HTTP
+    modules: [sillo.core.http.cookies]
+    docs: [v1.0/guides/cookies.mdx, v1.0/guides/headers.mdx]
+
+  - id: static_files
+    title: Static files
+    area: HTTP
+    modules: [sillo.static]
+    docs: [v1.0/guides/static-files.mdx]
+
+  - id: validation
+    title: Validation (markers, request & response models)
+    area: HTTP
+    modules: [sillo.validation, sillo.parameters]
+    docs: [v1.0/guides/validation/index.md, v1.0/guides/request-parameters.mdx]
+
+  - id: dependency_injection
+    title: Dependency injection
+    area: HTTP
+    modules: [sillo.core.dependencies]
+    docs: [v1.0/guides/dependency-injection.md]
+
+  - id: middleware
+    title: Middleware
+    area: HTTP
+    modules: [sillo.middleware, sillo.middleware.gzip]
+    docs: [v1.0/guides/middleware.md]
+
+  - id: content_negotiation
+    title: Content negotiation
+    area: HTTP
+    modules: [sillo.http.accepts]
+    docs: [v1.0/guides/content-negotiation.md]
+
+  - id: http_caching
+    title: HTTP caching headers & ETags
+    area: HTTP
+    modules: [sillo.http.etag]
+    docs: [v1.0/guides/headers.mdx]
+
+  - id: url_normalization
+    title: URL normalization
+    area: HTTP
+    modules: [sillo.normalize]
+    docs: [v1.0/guides/url-normalization.md]
+
+  - id: errors
+    title: Errors & exception handlers
+    area: HTTP
+    modules: [sillo.exceptions, sillo.exception_handler, sillo.core.error]
+    docs: [v1.0/guides/error-handling.mdx, v1.0/advanced/exception-handling.md]
+
+  - id: pagination
+    title: Pagination
+    area: HTTP
+    modules: [sillo.pagination, sillo.record.pagination]
+    docs: [v1.0/guides/pagination.mdx, v1.0/orm/pagination.md]
+
+  - id: openapi
+    title: OpenAPI & API docs
+    area: HTTP
+    modules: [sillo.openapi]
+    docs: [v1.0/guides/openapi/index.md]
+
+  - id: http_client
+    title: Outbound HTTP client
+    area: HTTP
+    modules: [sillo.http.client]
+    docs: [v1.0/guides/http/client.md]
+
+  # ── Data ─────────────────────────────────────────────────────────────────
+  - id: database
+    title: Database setup (Record)
+    area: Data
+    modules: [sillo.record$, sillo.record.config, sillo.record.manager, sillo.record.logging, sillo.record.exceptions]
+    docs: [v1.0/orm/setup.mdx, v1.0/orm/configuration.md, v1.0/orm/connections.md]
+
+  - id: models
+    title: Models, fields & relationships
+    area: Data
+    modules: [sillo.record.models, sillo.record.fields, sillo.record.mixins, sillo.record.casting, sillo.record.scopes, sillo.record.collection, sillo.record.pydantic]
+    docs: [v1.0/orm/models.md, v1.0/orm/fields.md, v1.0/orm/relationships.md]
+
+  - id: querying
+    title: Querying
+    area: Data
+    modules: [sillo.record.queries]
+    docs: [v1.0/orm/queries.md, v1.0/orm/filtering.md, v1.0/orm/eager-loading.md]
+
+  - id: model_events
+    title: Model events & observers
+    area: Data
+    modules: [sillo.record.events]
+    docs: [v1.0/orm/events.md]
+
+  - id: transactions
+    title: Transactions
+    area: Data
+    modules: [sillo.record.transactions]
+    docs: [v1.0/orm/transactions.md]
+
+  - id: migrations
+    title: Migrations
+    area: Data
+    modules: [sillo.record.commands, sillo.record.console, sillo.record.helpers]
+    docs: [v1.0/orm/migrations.md, v1.0/cli/database.md]
+
+  - id: factories_seeding
+    title: Factories, seeders & fixtures
+    area: Data
+    modules: [sillo.record.factories]
+    docs: [v1.0/orm/factories.md, v1.0/orm/seeding.md]
+
+  # ── Security ─────────────────────────────────────────────────────────────
+  - id: authentication
+    title: Authentication (session, JWT, API key)
+    area: Security
+    modules: [sillo.auth]
+    docs: [v1.0/guides/authentication.md, v1.0/guides/jwt-auth.md, v1.0/guides/session-auth.md, v1.0/guides/api-keys.md]
+
+  - id: route_protection
+    title: Protecting routes (useAuth)
+    area: Security
+    modules: [sillo.auth.use_auth]
+    docs: [v1.0/guides/protecting-routes.md]
+
+  - id: users
+    title: User models & accounts
+    area: Security
+    modules: [sillo.users]
+    docs: [v1.0/guides/users.md, v1.0/cli/users.md]
+
+  - id: authorization
+    title: Permissions & groups
+    area: Security
+    modules: [sillo.permissions]
+    docs: [v1.0/guides/permissions.md]
+
+  - id: sessions
+    title: Sessions
+    area: Security
+    modules: [sillo.session]
+    docs: [v1.0/guides/sessions.md]
+
+  - id: password_hashing
+    title: Password hashing
+    area: Security
+    modules: [sillo.hashing, sillo.helpers.hashing]
+    docs: [v1.0/guides/hashing.md]
+
+  - id: cors
+    title: CORS
+    area: Security
+    modules: [sillo.security.cors]
+    docs: [v1.0/guides/cors.md]
+
+  - id: csrf
+    title: CSRF protection
+    area: Security
+    modules: [sillo.security.csrf]
+    docs: [v1.0/guides/csrf.md]
+
+  - id: security_headers
+    title: Security headers & HTTPS
+    area: Security
+    modules: [sillo.security.shield, sillo.middleware.security, sillo.security$]
+    docs: [v1.0/guides/security.md]
+
+  - id: rate_limiting
+    title: Rate limiting
+    area: Security
+    modules: [sillo.security.ratelimit]
+    docs: [v1.0/guides/rate-limiting.md]
+
+  - id: cryptography
+    title: Signing, encryption & JWT helpers
+    area: Security
+    modules: [sillo.helpers.crypto, sillo.helpers.signing, sillo.helpers.jwt]
+    docs: [v1.0/guides/helpers/crypto.mdx, v1.0/guides/helpers/jwt.mdx]
+
+  # ── Services ─────────────────────────────────────────────────────────────
+  - id: cache
+    title: Caching (memory & Redis)
+    area: Services
+    modules: [sillo.cache]
+    docs: [v1.0/guides/cache.mdx]
+
+  - id: events
+    title: Events & listeners
+    area: Services
+    modules: [sillo.events, sillo.work.queue.events, sillo.work.queue.listener]
+    docs: [v1.0/guides/events.mdx, v1.0/guides/work/events.mdx]
+
+  - id: queues
+    title: Queues, jobs & workers
+    area: Services
+    modules: [sillo.work.queue, sillo.work.commands, sillo.work.console, sillo.work$, sillo.work.types, sillo.work.dependency]
+    docs: [v1.0/guides/work/queue.mdx, v1.0/guides/work/jobs.mdx, v1.0/cli/queues.md]
+
+  - id: background_tasks
+    title: Background tasks
+    area: Services
+    modules: [sillo.work.background, sillo.work.task, sillo.work.backends, sillo.work.middleware]
+    docs: [v1.0/guides/work/background.mdx]
+
+  - id: scheduler
+    title: Scheduler & cron
+    area: Services
+    modules: [sillo.work.scheduler]
+    docs: [v1.0/guides/work/scheduler.mdx, v1.0/cli/scheduler.md]
+
+  - id: mail
+    title: Mail
+    area: Services
+    modules: [sillo.mail]
+    docs: [v1.0/guides/services/mail.mdx]
+
+  - id: storage
+    title: File storage & buckets (local, S3)
+    area: Services
+    modules: [sillo.storage]
+    docs: [v1.0/guides/storage.mdx]
+
+  - id: file_uploads
+    title: File uploads
+    area: Services
+    modules: [sillo.storage.uploads]
+    docs: [v1.0/guides/file-upload.md, v1.0/guides/validation/forms-and-files.md]
+
+  - id: websockets
+    title: WebSockets
+    area: Services
+    modules: [sillo.websockets]
+    docs: [v1.0/guides/websockets/index.mdx]
+
+  # ── Tooling ──────────────────────────────────────────────────────────────
+  - id: testing
+    title: Testing & TestClient
+    area: Tooling
+    modules: [sillo.testclient]
+    docs: [v1.0/advanced/test-client.md, v1.0/guides/start/testing.md]
+
+  - id: cli
+    title: The sillo command & custom commands
+    area: Tooling
+    modules: [sillo.console]
+    docs: [v1.0/cli/index.md, v1.0/cli/custom-commands.md]
+
+  - id: logging
+    title: Logging, request IDs & error reports
+    area: Tooling
+    modules: [sillo.logging, sillo.http.lifecycle]
+    docs: [v1.0/guides/request-lifecycle.md, v1.0/advanced/debugging.md]
+
+  - id: debugging
+    title: Debugging Sillo applications
+    area: Tooling
+    modules: []
+    docs: [v1.0/advanced/debugging.md]
+
+  - id: helpers
+    title: Helpers (strings, retry, network, files, concurrency)
+    area: Tooling
+    modules: [sillo.helpers]
+    docs: [v1.0/guides/helpers/index.mdx]
+
+  # ── Official packages ────────────────────────────────────────────────────
+  - id: inertia
+    title: Inertia (React & Vue pages)
+    area: Packages
+    distribution: sillo-inertia
+    modules: [sillo_inertia]
+    docs: [v1.0/guides/inertia/index.md]
+
+  - id: oauth
+    title: OAuth sign-in (sillo-oauth)
+    area: Packages
+    distribution: sillo-oauth
+    modules: [sillo_oauth]
+    docs: [v1.0/guides/oauth/index.md]
+
+  - id: realtime_rooms
+    title: Rooms, presence & broadcasting (sillo-wire)
+    area: Packages
+    distribution: sillo-wire
+    modules: [sillo_wire]
+    docs: [packages/wire/index.md]
+
+  - id: graphql
+    title: GraphQL (sillo-graphql)
+    area: Packages
+    distribution: sillo-graphql
+    modules: [sillo_graphql]
+    docs: [packages/graphql/index.md]
+
+  - id: admin
+    title: Admin panel (warder)
+    area: Packages
+    distribution: warder
+    modules: [warder]
+    docs: [packages/warder/index.md]
+
+  - id: scaffolding
+    title: Project scaffolding (sillo-start)
+    area: Packages
+    distribution: sillo-start
+    modules: [sillo_start]
+    docs: [v1.0/start/index.md]
+
+  - id: dev_dashboard
+    title: Vise dev dashboard (sillo-vise, alpha)
+    area: Packages
+    distribution: sillo-vise
+    required: false
+    modules: [sillo_vise]
+    docs: []
+
+  # ── Not in Sillo ─────────────────────────────────────────────────────────
+  # Features developers ask for by name that Sillo 1.x does not have. The base
+  # skill lists each one so an agent says so instead of inventing an import.
+  - id: distributed_locks
+    title: Distributed locks
+    area: Not in Sillo
+    status: absent
+    guidance: >-
+      There is no sillo.locks module or lock primitive. For "run once across
+      processes", use Redis directly (SET key value NX EX ttl via redis-py);
+      a scheduled job's max_instances only prevents overlap inside one process.
+
+  - id: telemetry
+    title: Metrics & tracing (OpenTelemetry)
+    area: Not in Sillo
+    status: absent
+    guidance: >-
+      Sillo 1.x ships request IDs and logging, not metrics or tracing. Add an
+      OpenTelemetry ASGI middleware with app.use(..., raw=True), or record
+      timings in your own middleware. sillo-graphql alone has an opentelemetry hook.
+
+  - id: html_templating
+    title: Server-side HTML templating
+    area: Not in Sillo
+    status: absent
+    guidance: >-
+      The v0.x templating layer was removed in 1.0; Jinja2 is only used for
+      email bodies (sillo-framework[mail]). Use sillo-inertia for pages, return
+      html(...) for small responses, or keep your own Jinja2 Environment.
+
+  - id: notifications
+    title: Multi-channel notifications
+    area: Not in Sillo
+    status: absent
+    guidance: >-
+      There is no notification system. Compose it: sillo.mail for email,
+      sillo-wire rooms for in-app delivery, and a queued Job to send them
+      without blocking the request.
+
+  - id: localization
+    title: Translations & localization
+    area: Not in Sillo
+    status: absent
+    guidance: >-
+      Sillo parses Accept-Language (sillo.http.accepts) but has no translation
+      catalogs or gettext integration; use Babel or your own lookup keyed on
+      the negotiated language.
+
+  - id: queue_brokers
+    title: Non-Redis queue brokers (SQS, RabbitMQ, Kafka)
+    area: Not in Sillo
+    status: absent
+    guidance: >-
+      Sillo's queue connections are SyncConnection (in-process) and
+      RedisConnection. For another broker, subclass
+      sillo.work.queue.QueueConnection (push/pop/ack/fail/size/clear).
+
+# Public by name, but implementation detail: no capability owns them.
+internal:
+  - sillo.core.dependencies.base
+  - sillo.middleware.define
+  - sillo.middleware.utils
+  - sillo.testclient.exceptions

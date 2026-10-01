@@ -1,0 +1,366 @@
+{
+ "cli": [],
+ "distribution": "sillo-inertia",
+ "framework": "sillo",
+ "modules": {
+  "sillo_inertia": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "HtmlString": {
+     "kind": "class",
+     "members": [],
+     "signature": "(value)"
+    },
+    "Inertia": {
+     "kind": "class",
+     "members": [
+      "back",
+      "current_version",
+      "handle_request",
+      "is_inertia_request",
+      "location",
+      "middleware",
+      "page",
+      "redirect",
+      "render",
+      "share"
+     ],
+     "signature": "(app=None, root_view='app.html', version=None, root_id='app', base_dir=None, vite=None, shared_props=\u2026, view_data=\u2026)"
+    },
+    "InertiaConfig": {
+     "kind": "class",
+     "members": [],
+     "signature": "(root_view, version=None, root_id='app')"
+    },
+    "LazyProp": {
+     "kind": "class",
+     "members": [
+      "as_merge",
+      "deferred"
+     ],
+     "signature": "(value, optional=False, defer_group=None, always=False, merge=False, deep=False, match_on=None)"
+    },
+    "OutsideRequestError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "Prop": {
+     "kind": "class",
+     "members": [
+      "as_merge",
+      "deferred"
+     ],
+     "signature": "(value, optional=False, defer_group=None, always=False, merge=False, deep=False, match_on=None)"
+    },
+    "ViteOptions": {
+     "kind": "class",
+     "members": [
+      "render_tags"
+     ],
+     "signature": "(entry, dev_server, manifest_path, asset_prefix, dev)"
+    },
+    "ViteReactOptions": {
+     "kind": "class",
+     "members": [
+      "render_tags"
+     ],
+     "signature": "(entry, dev_server, manifest_path, asset_prefix, dev, react_refresh=True)"
+    },
+    "ViteVueOptions": {
+     "kind": "class",
+     "members": [
+      "render_tags"
+     ],
+     "signature": "(entry, dev_server, manifest_path, asset_prefix, dev)"
+    },
+    "__version__": {
+     "kind": "value"
+    },
+    "always": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "back": {
+     "kind": "function",
+     "signature": "(*, fallback='/', status_code=None, ctx=None)"
+    },
+    "current_context": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "current_inertia": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "deep_merge": {
+     "kind": "function",
+     "signature": "(callback, *, match_on=None)"
+    },
+    "defer": {
+     "kind": "function",
+     "signature": "(callback, group='default', *, merge=False, deep=False, match_on=None)"
+    },
+    "encode_prop": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "lazy": {
+     "kind": "function",
+     "signature": "(callback)"
+    },
+    "location": {
+     "kind": "function",
+     "signature": "(url, *, status_code=409)"
+    },
+    "merge": {
+     "kind": "function",
+     "signature": "(callback, *, match_on=None)"
+    },
+    "optional": {
+     "kind": "function",
+     "signature": "(callback)"
+    },
+    "raw": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "redirect": {
+     "kind": "function",
+     "signature": "(location, *, status_code=None, ctx=None)"
+    },
+    "render": {
+     "kind": "async function",
+     "signature": "(component, props=None, **options)"
+    },
+    "set_errors": {
+     "kind": "function",
+     "signature": "(ctx, errors, bag=None)"
+    },
+    "set_flash": {
+     "kind": "function",
+     "signature": "(ctx, level, message)"
+    },
+    "share": {
+     "kind": "function",
+     "signature": "(**props)"
+    },
+    "vite_react": {
+     "kind": "function",
+     "signature": "(*, entry='src/main.jsx', dev_server='http://localhost:5173', manifest_path='dist/.vite/manifest.json', asset_prefix='/assets/', dev=True, react_refresh=True)"
+    },
+    "vite_vue": {
+     "kind": "function",
+     "signature": "(*, entry='src/main.ts', dev_server='http://localhost:5173', manifest_path='dist/.vite/manifest.json', asset_prefix='/assets/', dev=True)"
+    }
+   }
+  },
+  "sillo_inertia.adapter": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "Inertia": {
+     "kind": "class",
+     "members": [
+      "back",
+      "current_version",
+      "handle_request",
+      "is_inertia_request",
+      "location",
+      "middleware",
+      "page",
+      "redirect",
+      "render",
+      "share"
+     ],
+     "signature": "(app=None, root_view='app.html', version=None, root_id='app', base_dir=None, vite=None, shared_props=\u2026, view_data=\u2026)"
+    },
+    "InertiaPage": {
+     "kind": "class",
+     "members": [
+      "to_dict"
+     ],
+     "signature": "(component, props, url, version=None, encrypt_history=False, clear_history=False, deferred_props=\u2026, merge_props=\u2026, deep_merge_props=\u2026, match_props_on=\u2026)"
+    },
+    "dumps": {
+     "kind": "function",
+     "signature": "(payload)"
+    },
+    "encode_prop": {
+     "kind": "function",
+     "signature": "(value)"
+    }
+   }
+  },
+  "sillo_inertia.config": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "InertiaConfig": {
+     "kind": "class",
+     "members": [],
+     "signature": "(root_view, version=None, root_id='app')"
+    }
+   }
+  },
+  "sillo_inertia.context": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "OutsideRequestError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "active": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "bind": {
+     "kind": "function",
+     "signature": "(adapter, ctx)"
+    },
+    "current_context": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "current_inertia": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "unbind": {
+     "kind": "function",
+     "signature": "(token)"
+    }
+   }
+  },
+  "sillo_inertia.props": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "HtmlString": {
+     "kind": "class",
+     "members": [],
+     "signature": "(value)"
+    },
+    "LazyProp": {
+     "kind": "class",
+     "members": [
+      "as_merge",
+      "deferred"
+     ],
+     "signature": "(value, optional=False, defer_group=None, always=False, merge=False, deep=False, match_on=None)"
+    },
+    "Prop": {
+     "kind": "class",
+     "members": [
+      "as_merge",
+      "deferred"
+     ],
+     "signature": "(value, optional=False, defer_group=None, always=False, merge=False, deep=False, match_on=None)"
+    },
+    "always": {
+     "kind": "function",
+     "signature": "(value)"
+    },
+    "deep_merge": {
+     "kind": "function",
+     "signature": "(callback, *, match_on=None)"
+    },
+    "defer": {
+     "kind": "function",
+     "signature": "(callback, group='default', *, merge=False, deep=False, match_on=None)"
+    },
+    "lazy": {
+     "kind": "function",
+     "signature": "(callback)"
+    },
+    "merge": {
+     "kind": "function",
+     "signature": "(callback, *, match_on=None)"
+    },
+    "optional": {
+     "kind": "function",
+     "signature": "(callback)"
+    },
+    "raw": {
+     "kind": "function",
+     "signature": "(value)"
+    }
+   }
+  },
+  "sillo_inertia.session": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "set_errors": {
+     "kind": "function",
+     "signature": "(ctx, errors, bag=None)"
+    },
+    "set_flash": {
+     "kind": "function",
+     "signature": "(ctx, level, message)"
+    },
+    "take_errors": {
+     "kind": "function",
+     "signature": "(ctx)"
+    },
+    "take_flash": {
+     "kind": "function",
+     "signature": "(ctx)"
+    }
+   }
+  },
+  "sillo_inertia.vite": {
+   "all": false,
+   "package": false,
+   "symbols": {
+    "ViteOptions": {
+     "kind": "class",
+     "members": [
+      "render_tags"
+     ],
+     "signature": "(entry, dev_server, manifest_path, asset_prefix, dev)"
+    },
+    "ViteReactOptions": {
+     "kind": "class",
+     "members": [
+      "render_tags"
+     ],
+     "signature": "(entry, dev_server, manifest_path, asset_prefix, dev, react_refresh=True)"
+    },
+    "ViteVueOptions": {
+     "kind": "class",
+     "members": [
+      "render_tags"
+     ],
+     "signature": "(entry, dev_server, manifest_path, asset_prefix, dev)"
+    },
+    "render_vite_react_tags": {
+     "kind": "function",
+     "signature": "(options, base_dir)"
+    },
+    "render_vite_tags": {
+     "kind": "function",
+     "signature": "(options, base_dir)"
+    },
+    "render_vite_vue_tags": {
+     "kind": "function",
+     "signature": "(options, base_dir)"
+    },
+    "vite_react": {
+     "kind": "function",
+     "signature": "(*, entry='src/main.jsx', dev_server='http://localhost:5173', manifest_path='dist/.vite/manifest.json', asset_prefix='/assets/', dev=True, react_refresh=True)"
+    },
+    "vite_vue": {
+     "kind": "function",
+     "signature": "(*, entry='src/main.ts', dev_server='http://localhost:5173', manifest_path='dist/.vite/manifest.json', asset_prefix='/assets/', dev=True)"
+    }
+   }
+  }
+ },
+ "python": "3.13.14",
+ "unimportable": {},
+ "version": "1.0.0"
+}

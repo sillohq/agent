@@ -1,0 +1,702 @@
+{
+ "cli": [],
+ "distribution": "sillo-graphql",
+ "framework": "sillo",
+ "modules": {
+  "sillo_graphql": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "Analysis": {
+     "kind": "class",
+     "members": [
+      "as_extensions"
+     ],
+     "signature": "(depth=0, cost=0, aliases=0, breadth=0, fields=0)"
+    },
+    "ErrorCode": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "ErrorPolicy": {
+     "kind": "class",
+     "members": [],
+     "signature": "(mask=True, mask_message='Unexpected error', include_stacktrace=False, correlation_key='requestId', log_masked=True)"
+    },
+    "Graph": {
+     "kind": "class",
+     "members": [
+      "connect",
+      "context",
+      "cost",
+      "loader",
+      "mount",
+      "on_connect",
+      "on_error",
+      "on_operation",
+      "render_ide",
+      "run",
+      "stream"
+     ],
+     "signature": "(schema, *, path='/graphql', name='graphql', ide=False, introspection=False, subscriptions=True, sse=False, auth=None, middleware=None, limits=None, errors=None, transport=None, uploads=None, persisted=None, costs=None, store=None, root_value=None, logger=None)"
+    },
+    "GraphContext": {
+     "kind": "class",
+     "members": [
+      "connection",
+      "user"
+     ],
+     "signature": "(*, http=None, socket=None, loaders=None, extra=None, operation_name=None)"
+    },
+    "GraphQLDenied": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message, *, code='FORBIDDEN', status_code=403, extensions=None)"
+    },
+    "GraphQLError": {
+     "kind": "class",
+     "members": [
+      "as_extensions"
+     ],
+     "signature": "(message, *, code='INTERNAL_SERVER_ERROR', extensions=None)"
+    },
+    "IDE": {
+     "kind": "class",
+     "members": [],
+     "signature": "(enabled=False, title='GraphQL', default_query='', assets='bundled', subscriptions=None)"
+    },
+    "Limits": {
+     "kind": "class",
+     "members": [
+      "none"
+     ],
+     "signature": "(depth=10, cost=1000, aliases=15, breadth=100, list_multiplier=10, max_tokens=5000, default_field_cost=1)"
+    },
+    "Loader": {
+     "kind": "class",
+     "members": [
+      "forget",
+      "load",
+      "load_many",
+      "prime"
+     ],
+     "signature": "(batch_fn, *, name=None, max_batch_size=None, cache=True)"
+    },
+    "LoaderError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "LoaderRegistry": {
+     "kind": "class",
+     "members": [
+      "batch",
+      "scope"
+     ],
+     "signature": "()"
+    },
+    "MemoryStore": {
+     "kind": "class",
+     "members": [
+      "get",
+      "set"
+     ],
+     "signature": "(max_entries=1000)"
+    },
+    "Metrics": {
+     "kind": "class",
+     "members": [
+      "reset",
+      "snapshot"
+     ],
+     "signature": "()"
+    },
+    "OperationLog": {
+     "kind": "class",
+     "members": [],
+     "signature": "(logger=None, *, slower_than=0.0, errors=True)"
+    },
+    "Persisted": {
+     "kind": "class",
+     "members": [
+      "enabled"
+     ],
+     "signature": "(apq=False, trusted=None, cache=None, ttl=86400)"
+    },
+    "PersistedStore": {
+     "kind": "class",
+     "members": [
+      "get",
+      "set"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "ResolverError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "ResponseHandle": {
+     "kind": "class",
+     "members": [
+      "apply",
+      "delete_cookie",
+      "headers",
+      "set_cookie",
+      "set_header",
+      "set_status"
+     ],
+     "signature": "(status_code=None, _headers=\u2026, _cookies=\u2026, _deleted=\u2026)"
+    },
+    "Result": {
+     "kind": "class",
+     "members": [
+      "body",
+      "ok"
+     ],
+     "signature": "(data=None, errors=\u2026, extensions=\u2026, status_code=200, response=None)"
+    },
+    "SilloGraphQLError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "Transport": {
+     "kind": "class",
+     "members": [
+      "max_body_bytes"
+     ],
+     "signature": "(get_queries=True, batch=10, graphql_content_type=True, response_content_type=True, max_body='1MB')"
+    },
+    "TrustedDocuments": {
+     "kind": "class",
+     "members": [
+      "get"
+     ],
+     "signature": "(source)"
+    },
+    "Uploads": {
+     "kind": "class",
+     "members": [
+      "allows",
+      "max_size_bytes",
+      "max_total_bytes"
+     ],
+     "signature": "(enabled=False, max_size='10MB', max_files=10, max_total='50MB', content_types=None, storage=None)"
+    },
+    "__version__": {
+     "kind": "value"
+    },
+    "analyze": {
+     "kind": "function",
+     "signature": "(document, *, limits, schema=None, operation_name=None, variables=None, costs=None)"
+    },
+    "bad_input": {
+     "kind": "function",
+     "signature": "(message, **extensions)"
+    },
+    "conflict": {
+     "kind": "function",
+     "signature": "(message, **extensions)"
+    },
+    "current_context": {
+     "kind": "value"
+    },
+    "field": {
+     "kind": "function",
+     "signature": "(fn=None, *, cost=None, auth=None, **options)"
+    },
+    "forbidden": {
+     "kind": "function",
+     "signature": "(message='Not permitted', **extensions)"
+    },
+    "hash_document": {
+     "kind": "function",
+     "signature": "(document)"
+    },
+    "internal": {
+     "kind": "function",
+     "signature": "(message='Internal server error', **extensions)"
+    },
+    "loader": {
+     "kind": "function",
+     "signature": "(fn=None, *, name=None, max_batch_size=None, cache=True)"
+    },
+    "mutation": {
+     "kind": "function",
+     "signature": "(fn=None, *, cost=None, auth=None, **options)"
+    },
+    "not_found": {
+     "kind": "function",
+     "signature": "(message='Not found', **extensions)"
+    },
+    "subscription": {
+     "kind": "function",
+     "signature": "(fn=None, *, auth=None, **options)"
+    },
+    "too_many_requests": {
+     "kind": "function",
+     "signature": "(message='Rate limit exceeded', *, retry_after=None, **extensions)"
+    },
+    "unauthenticated": {
+     "kind": "function",
+     "signature": "(message='Not authenticated', **extensions)"
+    }
+   }
+  },
+  "sillo_graphql.context": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "GraphContext": {
+     "kind": "class",
+     "members": [
+      "connection",
+      "user"
+     ],
+     "signature": "(*, http=None, socket=None, loaders=None, extra=None, operation_name=None)"
+    },
+    "ResponseHandle": {
+     "kind": "class",
+     "members": [
+      "apply",
+      "delete_cookie",
+      "headers",
+      "set_cookie",
+      "set_header",
+      "set_status"
+     ],
+     "signature": "(status_code=None, _headers=\u2026, _cookies=\u2026, _deleted=\u2026)"
+    },
+    "current_context": {
+     "kind": "value"
+    }
+   }
+  },
+  "sillo_graphql.errors": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "ErrorCode": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "GraphQLDenied": {
+     "kind": "class",
+     "members": [],
+     "signature": "(message, *, code='FORBIDDEN', status_code=403, extensions=None)"
+    },
+    "GraphQLError": {
+     "kind": "class",
+     "members": [
+      "as_extensions"
+     ],
+     "signature": "(message, *, code='INTERNAL_SERVER_ERROR', extensions=None)"
+    },
+    "SilloGraphQLError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "bad_input": {
+     "kind": "function",
+     "signature": "(message, **extensions)"
+    },
+    "conflict": {
+     "kind": "function",
+     "signature": "(message, **extensions)"
+    },
+    "forbidden": {
+     "kind": "function",
+     "signature": "(message='Not permitted', **extensions)"
+    },
+    "internal": {
+     "kind": "function",
+     "signature": "(message='Internal server error', **extensions)"
+    },
+    "not_found": {
+     "kind": "function",
+     "signature": "(message='Not found', **extensions)"
+    },
+    "too_many_requests": {
+     "kind": "function",
+     "signature": "(message='Rate limit exceeded', *, retry_after=None, **extensions)"
+    },
+    "unauthenticated": {
+     "kind": "function",
+     "signature": "(message='Not authenticated', **extensions)"
+    }
+   }
+  },
+  "sillo_graphql.graph": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Graph": {
+     "kind": "class",
+     "members": [
+      "connect",
+      "context",
+      "cost",
+      "loader",
+      "mount",
+      "on_connect",
+      "on_error",
+      "on_operation",
+      "render_ide",
+      "run",
+      "stream"
+     ],
+     "signature": "(schema, *, path='/graphql', name='graphql', ide=False, introspection=False, subscriptions=True, sse=False, auth=None, middleware=None, limits=None, errors=None, transport=None, uploads=None, persisted=None, costs=None, store=None, root_value=None, logger=None)"
+    },
+    "Result": {
+     "kind": "class",
+     "members": [
+      "body",
+      "ok"
+     ],
+     "signature": "(data=None, errors=\u2026, extensions=\u2026, status_code=200, response=None)"
+    }
+   }
+  },
+  "sillo_graphql.ide": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "render": {
+     "kind": "function",
+     "signature": "(policy, *, endpoint, socket=None)"
+    }
+   }
+  },
+  "sillo_graphql.limits": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Analysis": {
+     "kind": "class",
+     "members": [
+      "as_extensions"
+     ],
+     "signature": "(depth=0, cost=0, aliases=0, breadth=0, fields=0)"
+    },
+    "analyze": {
+     "kind": "function",
+     "signature": "(document, *, limits, schema=None, operation_name=None, variables=None, costs=None)"
+    },
+    "enforce": {
+     "kind": "function",
+     "signature": "(document, *, limits, schema=None, operation_name=None, variables=None, costs=None)"
+    }
+   }
+  },
+  "sillo_graphql.loaders": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Loader": {
+     "kind": "class",
+     "members": [
+      "forget",
+      "load",
+      "load_many",
+      "prime"
+     ],
+     "signature": "(batch_fn, *, name=None, max_batch_size=None, cache=True)"
+    },
+    "LoaderError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "LoaderRegistry": {
+     "kind": "class",
+     "members": [
+      "batch",
+      "scope"
+     ],
+     "signature": "()"
+    },
+    "loader": {
+     "kind": "function",
+     "signature": "(fn=None, *, name=None, max_batch_size=None, cache=True)"
+    }
+   }
+  },
+  "sillo_graphql.persisted": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "MemoryStore": {
+     "kind": "class",
+     "members": [
+      "get",
+      "set"
+     ],
+     "signature": "(max_entries=1000)"
+    },
+    "PersistedStore": {
+     "kind": "class",
+     "members": [
+      "get",
+      "set"
+     ],
+     "signature": "(*args, **kwargs)"
+    },
+    "TrustedDocuments": {
+     "kind": "class",
+     "members": [
+      "get"
+     ],
+     "signature": "(source)"
+    },
+    "extract_hash": {
+     "kind": "function",
+     "signature": "(payload)"
+    },
+    "hash_document": {
+     "kind": "function",
+     "signature": "(document)"
+    },
+    "resolve_document": {
+     "kind": "async function",
+     "signature": "(payload, *, policy, store, trusted)"
+    }
+   }
+  },
+  "sillo_graphql.policy": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "ErrorPolicy": {
+     "kind": "class",
+     "members": [],
+     "signature": "(mask=True, mask_message='Unexpected error', include_stacktrace=False, correlation_key='requestId', log_masked=True)"
+    },
+    "IDE": {
+     "kind": "class",
+     "members": [],
+     "signature": "(enabled=False, title='GraphQL', default_query='', assets='bundled', subscriptions=None)"
+    },
+    "Limits": {
+     "kind": "class",
+     "members": [
+      "none"
+     ],
+     "signature": "(depth=10, cost=1000, aliases=15, breadth=100, list_multiplier=10, max_tokens=5000, default_field_cost=1)"
+    },
+    "Persisted": {
+     "kind": "class",
+     "members": [
+      "enabled"
+     ],
+     "signature": "(apq=False, trusted=None, cache=None, ttl=86400)"
+    },
+    "Transport": {
+     "kind": "class",
+     "members": [
+      "max_body_bytes"
+     ],
+     "signature": "(get_queries=True, batch=10, graphql_content_type=True, response_content_type=True, max_body='1MB')"
+    },
+    "Uploads": {
+     "kind": "class",
+     "members": [
+      "allows",
+      "max_size_bytes",
+      "max_total_bytes"
+     ],
+     "signature": "(enabled=False, max_size='10MB', max_files=10, max_total='50MB', content_types=None, storage=None)"
+    },
+    "parse_size": {
+     "kind": "function",
+     "signature": "(value)"
+    }
+   }
+  },
+  "sillo_graphql.resolvers": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "ResolverError": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "field": {
+     "kind": "function",
+     "signature": "(fn=None, *, cost=None, auth=None, **options)"
+    },
+    "mutation": {
+     "kind": "function",
+     "signature": "(fn=None, *, cost=None, auth=None, **options)"
+    },
+    "resolver_costs": {
+     "kind": "function",
+     "signature": "()"
+    },
+    "subscription": {
+     "kind": "function",
+     "signature": "(fn=None, *, auth=None, **options)"
+    }
+   }
+  },
+  "sillo_graphql.testing": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "GraphClient": {
+     "kind": "class",
+     "members": [
+      "batch",
+      "execute",
+      "ide",
+      "mutate",
+      "query",
+      "subscribe"
+     ],
+     "signature": "(app, *, path='/graphql', headers=None)"
+    },
+    "GraphResult": {
+     "kind": "class",
+     "members": [
+      "codes",
+      "data",
+      "errors",
+      "extensions",
+      "messages",
+      "ok",
+      "raise_for_errors"
+     ],
+     "signature": "(status_code, body, headers=None)"
+    },
+    "StreamEnded": {
+     "kind": "class",
+     "members": [],
+     "signature": "(*args, **kwargs)"
+    },
+    "SubscriptionStream": {
+     "kind": "class",
+     "members": [
+      "collect",
+      "complete",
+      "next"
+     ],
+     "signature": "(client, path, document, *, variables, connection_params, timeout, headers=None)"
+    }
+   }
+  },
+  "sillo_graphql.tracing": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "Metrics": {
+     "kind": "class",
+     "members": [
+      "reset",
+      "snapshot"
+     ],
+     "signature": "()"
+    },
+    "OperationLog": {
+     "kind": "class",
+     "members": [],
+     "signature": "(logger=None, *, slower_than=0.0, errors=True)"
+    },
+    "OperationStats": {
+     "kind": "class",
+     "members": [
+      "as_dict",
+      "average"
+     ],
+     "signature": "(count=0, errors=0, total_seconds=0.0, slowest=0.0, total_cost=0)"
+    },
+    "opentelemetry": {
+     "kind": "function",
+     "signature": "(tracer)"
+    }
+   }
+  },
+  "sillo_graphql.transport": {
+   "all": true,
+   "package": true,
+   "symbols": {
+    "HttpTransport": {
+     "kind": "class",
+     "members": [
+      "handle"
+     ],
+     "signature": "(graph)"
+    },
+    "SseTransport": {
+     "kind": "class",
+     "members": [
+      "handle"
+     ],
+     "signature": "(graph, *, keepalive=15.0)"
+    },
+    "WebSocketTransport": {
+     "kind": "class",
+     "members": [
+      "handle"
+     ],
+     "signature": "(graph, *, init_timeout=10.0, keepalive=30.0)"
+    }
+   }
+  },
+  "sillo_graphql.transport.http": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "HttpTransport": {
+     "kind": "class",
+     "members": [
+      "handle"
+     ],
+     "signature": "(graph)"
+    },
+    "negotiate": {
+     "kind": "function",
+     "signature": "(accept, *, enabled)"
+    }
+   }
+  },
+  "sillo_graphql.transport.sse": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "MEDIA_TYPE": {
+     "kind": "value"
+    },
+    "SseTransport": {
+     "kind": "class",
+     "members": [
+      "handle"
+     ],
+     "signature": "(graph, *, keepalive=15.0)"
+    }
+   }
+  },
+  "sillo_graphql.transport.ws": {
+   "all": true,
+   "package": false,
+   "symbols": {
+    "PROTOCOL": {
+     "kind": "value"
+    },
+    "WebSocketTransport": {
+     "kind": "class",
+     "members": [
+      "handle"
+     ],
+     "signature": "(graph, *, init_timeout=10.0, keepalive=30.0)"
+    }
+   }
+  }
+ },
+ "python": "3.12.13",
+ "unimportable": {},
+ "version": "1.0.0"
+}

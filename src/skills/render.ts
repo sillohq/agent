@@ -1,0 +1,198 @@
+import YAML from "yaml";
+import { compareVersions, parseVersion } from "../core/pep440.js";
+import type { ApiChange, VersionCatalog } from "../framework/catalog.js";
+import { AGENT_VERSION } from "../version.js";
+import { LIMITS, type Skill } from "./schema.js";
+
+/**
+ * The on-disk dialects of SKILL.md.
+ *
+ * - `claude`: Claude Code. Understands `when_to_use`, which it appends to the
+ *   description inside a shared 1,536-character listing budget.
+ * - `agents`: the Agent Skills layout read by Codex and OpenCode. `name` and
+ *   `description` are required; OpenCode only accepts a string-to-string
+ *   `metadata` map beyond those, so nothing else goes in the frontmatter.
+ *
+ * Both dialects carry the same body, references and scripts: the knowledge is
+ * identical, only the envelope differs.
+ */
+export type SkillFormat = "claude" | "agents";
+
+export interface RenderedFile {
+  /** Relative to the skill's installed directory, `/`-separated. */
+  path: string;
+  content: string;
+}
+
+export interface RenderContext {
+  versions: VersionCatalog;
+}
+
+export const GENERATED_MARKER = "sillo-agent:generated";
+
+export function renderSkill(skill: Skill, format: SkillFormat, ctx: RenderContext): RenderedFile[] {
+  const files: RenderedFile[] = [
+    { path: "SKILL.md", content: renderSkillMarkdown(skill, format, ctx) },
+  ];
+  for (const file of skill.files) files.push({ path: file.path, content: file.content });
+  for (const generated of generatedFiles(skill, ctx)) files.push(generated);
+  if (format === "agents") {
+    files.push({ path: "agents/openai.yaml", content: renderOpenAiYaml(skill) });
+  }
+  return files.sort((a, b) => a.path.localeCompare(b.path));
+}
+
+function metadata(skill: Skill): Record<string, string> {
+  const out: Record<string, string> = {
+    generator: `@sillo/agent ${AGENT_VERSION}`,
+    sillo: skill.meta.sillo,
+  };
+  if (skill.meta.packages.length) out.requires = skill.meta.packages.join(", ");
+  if (skill.origin.kind === "package") out.source = skill.origin.distribution;
+  return out;
+}
+
+/**
+ * Claude's `when_to_use`: the intents as example requests, cut to whatever the
+ * listing budget leaves after the description. Whole intents are dropped rather
+ * than truncating one mid-phrase.
+ */
+export function whenToUse(skill: Skill, budget = LIMITS.claudeListingMax): string {
+  const lead = "Use for requests like: ";
+  const room = budget - skill.meta.description.length - lead.length - 8;
+  const picked: string[] = [];
+  let used = 0;
+  for (const intent of skill.meta.intents) {
+    const piece = `"${intent}"`;
+    if (used + piece.length + 2 > Math.min(room, 700)) break;
+    picked.push(piece);
+    used += piece.length + 2;
+  }
+  return picked.length ? `${lead}${picked.join("; ")}.` : "";
+}
+
+export function renderFrontmatter(skill: Skill, format: SkillFormat): string {
+  const data: Record<string, unknown> = {
+    name: skill.meta.name,
+    description: skill.meta.description,
+  };
+  if (format === "claude") {
+    const when = whenToUse(skill);
+    if (when) data.when_to_use = when;
+  }
+  data.metadata = metadata(skill);
+  return `---\n${YAML.stringify(data, { lineWidth: 0 }).trimEnd()}\n---\n`;
+}
+
+export function changesFor(skill: Skill, versions: VersionCatalog): ApiChange[] {
+  return versions.changes.filter((c) => c.skills.includes(skill.meta.name));
+}
+
+function renderVersionNotes(changes: ApiChange[]): string {
+  if (!changes.length) return "";
+  const lines = changes.map((c) => {
+    const verb =
+      c.kind === "removed"
+        ? "removed in"
+        : c.kind === "deprecated"
+          ? "deprecated in"
+          : c.kind === "introduced"
+            ? "added in"
+            : "changed in";
+    const replacement = c.replacement ? ` Use \`${c.replacement}\` instead.` : "";
+    return `- \`${c.api}\` — ${verb} ${c.version}. ${c.summary}${replacement}`;
+  });
+  return `\n## Version notes\n\nCheck these against the project's installed Sillo version before relying on them.\n\n${lines.join("\n")}\n`;
+}
+
+/** Append the intents to the end of the `## When` section as example requests. */
+function injectIntents(body: string, intents: string[]): string {
+  if (!intents.length) return body;
+  const list = `\nRequests that usually mean this skill applies:\n\n${intents.map((i) => `- "${i}"`).join("\n")}\n`;
+  const match = /^## When\s*$/m.exec(body);
+  if (!match) return `${body.trimEnd()}\n${list}`;
+  const after = match.index + match[0].length;
+  const next = body.slice(after).search(/^## /m);
+  if (next === -1) return `${body.trimEnd()}\n${list}`;
+  const cut = after + next;
+  return `${body.slice(0, cut).trimEnd()}\n${list}\n${body.slice(cut)}`;
+}
+
+export function renderSkillMarkdown(skill: Skill, format: SkillFormat, ctx: RenderContext): string {
+  const { meta } = skill;
+  const header = [
+    `<!-- ${GENERATED_MARKER} ${meta.name} @sillo/agent ${AGENT_VERSION}.`,
+    "     Regenerated by `sillo-agent update`; local edits are detected and kept, not overwritten.",
+    "     Put project-specific guidance in CLAUDE.md / AGENTS.md outside the Sillo block instead. -->",
+  ].join("\n");
+  const scope =
+    meta.name === "sillo"
+      ? ""
+      : `> Written for Sillo \`${meta.sillo}\`. If the project's installed version is outside that range, follow the \`sillo\` skill's version guidance before using anything below.\n\n`;
+  let body = injectIntents(skill.body.trim(), meta.intents);
+  body += renderVersionNotes(changesFor(skill, ctx.versions));
+  return `${renderFrontmatter(skill, format)}${header}\n\n# ${meta.title}\n\n${scope}${body.trim()}\n`;
+}
+
+function renderOpenAiYaml(skill: Skill): string {
+  const short = skill.meta.description.split(/(?<=\.)\s/)[0] ?? skill.meta.description;
+  return YAML.stringify(
+    {
+      interface: {
+        display_name: `Sillo: ${skill.meta.title}`,
+        short_description: short.length > 120 ? `${short.slice(0, 117)}...` : short,
+      },
+    },
+    { lineWidth: 0 },
+  );
+}
+
+/**
+ * Files rendered from framework data rather than written by hand, so the same
+ * fact is never maintained in two places. The validator knows these paths
+ * exist even though they are absent from the canonical skill directory.
+ */
+export const GENERATED_FILES: Record<string, string[]> = {
+  sillo: ["references/versions.md"],
+};
+
+function generatedFiles(skill: Skill, ctx: RenderContext): RenderedFile[] {
+  if (skill.meta.name !== "sillo") return [];
+  return [{ path: "references/versions.md", content: renderVersionsReference(ctx.versions) }];
+}
+
+export function renderVersionsReference(versions: VersionCatalog): string {
+  const lines = [
+    "# Sillo versions",
+    "",
+    `The bundled skills are written for Sillo \`${versions.supported}\`. Check the installed`,
+    "version (`scripts/sillo_project.py`, or `sillo version`) before relying on any example.",
+    "",
+  ];
+  if (versions.legacy.length) {
+    lines.push("## Outside the supported range", "");
+    for (const l of versions.legacy) lines.push(`- **\`${l.range}\`** — ${l.note}`);
+    lines.push("");
+  }
+  lines.push("## API changes, newest first", "");
+  lines.push("| Version | Change | API | Use instead |", "|---|---|---|---|");
+  const sorted = [...versions.changes].sort((a, b) => {
+    const va = parseVersion(a.version);
+    const vb = parseVersion(b.version);
+    return va && vb ? compareVersions(vb, va) : 0;
+  });
+  for (const c of sorted) {
+    const summary = c.summary.replace(/\s+/g, " ").replace(/\|/g, "\\|");
+    lines.push(
+      `| ${c.version} | ${c.kind}: ${summary} | \`${c.api.replace(/\|/g, "\\|")}\` | ${c.replacement ? `\`${c.replacement.replace(/\|/g, "\\|")}\`` : ""} |`,
+    );
+  }
+  lines.push(
+    "",
+    "When the project's version predates a change listed here, the old behaviour applies:",
+    "read the installed source (see [source-fallback.md](source-fallback.md)) rather than",
+    "the examples in the skills.",
+    "",
+  );
+  return lines.join("\n");
+}
